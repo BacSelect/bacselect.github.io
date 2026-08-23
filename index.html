@@ -165,16 +165,57 @@
     </section>
 
     <section id="method" class="section method-section">
-      <div class="shell method-grid">
-        <div>
-          <span class="eyebrow">Selection principle</span>
-          <h2>Not random.<br>Not hand-picked.</h2>
+      <div class="shell">
+        <div class="method-grid">
+          <div>
+            <span class="eyebrow">Selection principle</span>
+            <h2>Not random.<br>Not hand-picked.</h2>
+          </div>
+          <div class="method-copy">
+            <p class="lead">BacSelect is designed around <strong>identity-blind, deterministic, diversity-seeking selection</strong>.</p>
+            <p>The aim is specific: build compact panels that span observed bacterial <strong>genome architecture</strong>, while controlling the influence of species that are heavily represented in the public archive.</p>
+            <p>Organism name, pathogen status, clinical relevance, publication history and expected software performance are not selection variables.</p>
+          </div>
         </div>
-        <div class="method-copy">
-          <p class="lead">BacSelect is designed around <strong>identity-blind, deterministic, diversity-seeking selection</strong>.</p>
-          <p>The selector may use species groupings to prevent abundant species from dominating the source universe, but it does not choose genomes because their names are familiar, clinically important or convenient.</p>
-          <p>The aim is specific: build compact panels that span observed bacterial <strong>genome architecture</strong>. BacSelect will not claim to be an unbiased sample of bacterial life or a universal measure of biological diversity.</p>
-          <a class="text-link" href="#releases">See how releases will work <span aria-hidden="true">→</span></a>
+
+        <div class="method-facts" aria-label="BacSelect method overview">
+          <article>
+            <span>01</span>
+            <h3>Define the universe</h3>
+            <p>Start from a versioned collection of eligible public complete bacterial genome assemblies. The exact source snapshot and eligibility rules belong to the release provenance.</p>
+          </article>
+
+          <article>
+            <span>02</span>
+            <h3>Describe architecture</h3>
+            <p>Represent each eligible genome using sequence-derived structural features such as genome size, GC content, replicon structure and repeat architecture.</p>
+          </article>
+
+          <article>
+            <span>03</span>
+            <h3>Control species abundance</h3>
+            <p>Construct the feature geometry so that species with thousands of deposited genomes do not automatically dominate species represented by only a few.</p>
+          </article>
+
+          <article>
+            <span>04</span>
+            <h3>Select deterministically</h3>
+            <p>For a fixed release, selector version and panel size, the same inputs produce the same ordered result. Selection does not depend on organism identity.</p>
+          </article>
+        </div>
+
+        <div class="method-boundary">
+          <span class="eyebrow">What BacSelect does not claim</span>
+          <p>BacSelect does not represent all bacterial life. Its source universe reflects what has been sampled, sequenced, assembled to completion and deposited in the public archive. BacSelect reduces arbitrary selection within that defined universe; it cannot remove biases already present in the underlying data.</p>
+        </div>
+
+        <div class="validation-strip">
+          <div>
+            <span class="eyebrow">Validation</span>
+            <strong>Selector choice is prospective and identity-blinded.</strong>
+          </div>
+          <p>Candidate selectors are evaluated using pre-specified coverage metrics before genome identities are inspected. The development preview will not serve panels until that validation is complete.</p>
+          <a href="https://github.com/BacSelect/bacselect">Scientific repository <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
@@ -185,25 +226,54 @@
           <div>
             <span class="eyebrow">Versioned by design</span>
             <h2>Fresh monthly.<br>Frozen forever.</h2>
+            <p class="release-intro">BacSelect releases are planned as immutable snapshots. A panel should remain reproducible long after the public genome archive has changed.</p>
           </div>
           <div class="release-badge">
             <span>First public release</span>
             <strong>Pending</strong>
           </div>
         </div>
+
+        <div class="release-identity">
+          <div>
+            <span>Release identifier</span>
+            <strong>YYYY.MM</strong>
+          </div>
+          <div>
+            <span>Selector</span>
+            <strong>Versioned</strong>
+          </div>
+          <div>
+            <span>Source universe</span>
+            <strong>Frozen</strong>
+          </div>
+          <div>
+            <span>Checksums</span>
+            <strong>Included</strong>
+          </div>
+        </div>
+
         <div class="release-grid">
           <div>
-            <h3>Refresh</h3>
-            <p>The production resource is planned to rebuild on the first of each month against a frozen upstream snapshot.</p>
+            <h3>Snapshot</h3>
+            <p>Each release records the exact eligible assembly universe, taxonomy state, structural-feature schema and upstream provenance used for selection.</p>
           </div>
           <div>
-            <h3>Archive</h3>
-            <p>Historical releases remain immutable so a paper can cite the exact universe, selector version and panel used.</p>
+            <h3>Panels</h3>
+            <p>Released panel sizes are tied to the release identifier and selector version, so a reported BacSelect panel can be reconstructed exactly.</p>
           </div>
           <div>
-            <h3>Track change over time</h3>
-            <p>Release comparisons will show which genomes entered or left and how structural coverage changed as public genome space grew.</p>
+            <h3>Artifacts</h3>
+            <p>Machine-readable genome lists, feature and selection provenance, release metadata and checksums will accompany the public resource.</p>
           </div>
+        </div>
+
+        <div class="release-history">
+          <div>
+            <span class="eyebrow">Release history</span>
+            <strong>No BacSelect release has been published yet.</strong>
+          </div>
+          <p>The current figures on this site describe the frozen Project Finch foundation used to develop and validate BacSelect. They are not a BacSelect release.</p>
         </div>
       </div>
     </section>
