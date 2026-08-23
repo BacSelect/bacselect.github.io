@@ -23,13 +23,20 @@
       <a href="#explore">Explore</a>
       <a href="#method">Method</a>
       <a href="#releases">Releases</a>
-      <a class="nav-cta" href="https://github.com/BacSelect/bacselect.github.io">GitHub</a>
+      <a
+        id="scientificRepoLink"
+        class="nav-cta"
+        href="https://github.com/BacSelect/bacselect"
+      >GitHub</a>
     </nav>
   </header>
 
   <main id="top">
     <section class="hero shell">
-      <div class="status-pill"><span></span> Development preview</div>
+      <div class="status-pill">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span id="statusLabel">Development preview</span>
+      </div>
       <h1>Bacterial genome diversity,<br><em>at the scale you need.</em></h1>
       <p class="hero-copy">Choose how many bacterial genomes you need. BacSelect will return a reproducible panel designed to span genome architecture across the available complete-genome collection.</p>
 
@@ -58,15 +65,75 @@
 
         <button id="buildButton" class="build-button" type="button">
           <span>Select genomes</span>
-          <span aria-hidden="true">↗</span>
+          <span aria-hidden="true">→</span>
         </button>
         <p id="buildNote" class="build-note" role="status">Panel generation will activate with the first validated BacSelect release.</p>
       </div>
 
+      <section
+        id="panelResult"
+        class="result-panel"
+        aria-labelledby="resultTitle"
+        hidden
+      >
+        <div class="result-header">
+          <div>
+            <span class="eyebrow">Panel status</span>
+            <h2 id="resultTitle">No validated panel released yet</h2>
+            <p id="resultLead">
+              BacSelect is still under prospective selector validation. No
+              genome identities are being served from the development preview.
+            </p>
+          </div>
+          <div class="result-n">
+            <strong id="resultN">100</strong>
+            <span>genomes requested</span>
+          </div>
+        </div>
+
+        <div class="result-meta">
+          <div>
+            <span>Release</span>
+            <strong id="resultRelease">Pending</strong>
+          </div>
+          <div>
+            <span>Selector version</span>
+            <strong id="resultSelector">Pending</strong>
+          </div>
+          <div>
+            <span>Panel</span>
+            <strong id="resultAvailability">Not released</strong>
+          </div>
+        </div>
+
+        <div class="result-actions">
+          <button type="button" disabled>Panel TSV</button>
+          <button type="button" disabled>Provenance</button>
+          <a
+            id="resultRepoLink"
+            href="https://github.com/BacSelect/bacselect"
+          >View scientific repository <span aria-hidden="true">→</span></a>
+        </div>
+
+        <p class="result-note">
+          Downloads remain disabled until the first validated BacSelect
+          release.
+        </p>
+      </section>
+
       <div class="foundation" aria-label="Project Finch foundation universe">
-        <div><strong>55,306</strong><span>eligible complete genomes</span></div>
-        <div><strong>13,765</strong><span>species groups</span></div>
-        <div><strong>12</strong><span>structural dimensions</span></div>
+        <div>
+          <strong id="foundationGenomes">55,306</strong>
+          <span>eligible complete genomes</span>
+        </div>
+        <div>
+          <strong id="foundationSpecies">13,765</strong>
+          <span>species groups</span>
+        </div>
+        <div>
+          <strong id="foundationFeatures">12</strong>
+          <span>structural dimensions</span>
+        </div>
       </div>
       <p class="foundation-note">Foundation figures are from the frozen Project Finch source-genome analysis that motivated BacSelect. BacSelect's first independent release will have its own versioned source universe.</p>
     </section>
@@ -157,7 +224,10 @@
     </div>
     <div class="footer-meta">
       <span>Development preview</span>
-      <a href="https://github.com/BacSelect/bacselect.github.io">Source</a>
+      <a
+        id="websiteRepoLink"
+        href="https://github.com/BacSelect/bacselect.github.io"
+      >Source</a>
     </div>
   </footer>
 
