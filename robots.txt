@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bacselect.github.io/sitemap.xml

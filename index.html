@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BacSelect | Bacterial genome diversity, at the scale you need</title>
+  <meta name="description" content="BacSelect builds reproducible bacterial genome panels selected to span genome architecture at the scale you need.">
+  <meta name="theme-color" content="#f4f1ea">
+  <meta property="og:title" content="BacSelect">
+  <meta property="og:description" content="Bacterial genome diversity, at the scale you need.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bacselect.github.io/">
+  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="BacSelect home">
+      <img src="assets/mark.svg" alt="" width="30" height="30">
+      <span>BacSelect</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="#how">How it works</a>
+      <a href="#method">Method</a>
+      <a href="#releases">Releases</a>
+      <a class="nav-cta" href="https://github.com/BacSelect/bacselect.github.io">GitHub</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero shell">
+      <div class="status-pill"><span></span> Development preview</div>
+      <h1>Bacterial genome diversity,<br><em>at the scale you need.</em></h1>
+      <p class="hero-copy">Choose how many genomes you can work with. BacSelect is being built to return a deterministic, reproducible panel that spans bacterial genome architecture without hand-picking organisms.</p>
+
+      <div class="selector-card" aria-labelledby="selector-title">
+        <div class="selector-heading">
+          <div>
+            <span class="eyebrow" id="selector-title">How many genomes?</span>
+            <div class="n-display"><span id="nValue">100</span><span class="n-unit">genomes</span></div>
+          </div>
+          <span class="range-label">10–500</span>
+        </div>
+
+        <input id="nSlider" type="range" min="10" max="500" step="1" value="100" aria-label="Number of genomes">
+
+        <div class="presets" aria-label="Common panel sizes">
+          <button type="button" data-n="10">10</button>
+          <button type="button" data-n="20">20</button>
+          <button type="button" data-n="50">50</button>
+          <button type="button" data-n="100" class="active">100</button>
+          <button type="button" data-n="200">200</button>
+          <button type="button" data-n="500">500</button>
+        </div>
+
+        <button id="buildButton" class="build-button" type="button">
+          <span>Build my panel</span>
+          <span aria-hidden="true">↗</span>
+        </button>
+        <p id="buildNote" class="build-note" role="status">The general N-selector is under validation. No BacSelect panel is released yet.</p>
+      </div>
+
+      <div class="foundation" aria-label="Method foundation">
+        <div><strong>55,306</strong><span>foundation genomes</span></div>
+        <div><strong>13,765</strong><span>species groups</span></div>
+        <div><strong>12</strong><span>structural dimensions</span></div>
+        <div><strong>1</strong><span>deterministic selector</span></div>
+      </div>
+      <p class="foundation-note">Foundation figures are from the frozen Project Finch source-genome analysis that motivated BacSelect. BacSelect's first independent release will have its own versioned source universe.</p>
+    </section>
+
+    <section id="how" class="section shell">
+      <div class="section-intro">
+        <span class="eyebrow">The idea</span>
+        <h2>One number in.<br>A defensible panel out.</h2>
+        <p>Benchmarking a tool should not require weeks of manually deciding which bacterial genomes are “representative”. BacSelect turns that selection problem into a reproducible resource.</p>
+      </div>
+
+      <div class="steps-grid">
+        <article>
+          <span class="step-number">01</span>
+          <h3>Choose your scale</h3>
+          <p>Pick a tractable panel size for your compute budget or analysis. The same release and N always return the same panel.</p>
+        </article>
+        <article>
+          <span class="step-number">02</span>
+          <h3>Span genome architecture</h3>
+          <p>Selection is driven by sequence-derived structural features rather than species popularity, pathogen status or biological importance.</p>
+        </article>
+        <article>
+          <span class="step-number">03</span>
+          <h3>Download and reproduce</h3>
+          <p>Every released panel will carry accessions, structural features, selection provenance, checksums and an immutable release identifier.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="method" class="section method-section">
+      <div class="shell method-grid">
+        <div>
+          <span class="eyebrow">Selection principle</span>
+          <h2>Not random.<br>Not hand-picked.</h2>
+        </div>
+        <div class="method-copy">
+          <p class="lead">BacSelect is designed around <strong>identity-blind, deterministic, diversity-seeking selection</strong>.</p>
+          <p>The selector may use species groupings to prevent abundant species from dominating the source universe, but it does not choose genomes because their names are familiar, clinically important or convenient.</p>
+          <p>The aim is specific: build compact panels that span observed bacterial <strong>genome architecture</strong>. BacSelect will not claim to be an unbiased sample of bacterial life or a universal measure of biological diversity.</p>
+          <a class="text-link" href="#releases">See how releases will work <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section id="releases" class="section shell">
+      <div class="release-card">
+        <div class="release-top">
+          <div>
+            <span class="eyebrow">Versioned by design</span>
+            <h2>Fresh monthly.<br>Frozen forever.</h2>
+          </div>
+          <div class="release-badge">
+            <span>First public release</span>
+            <strong>Pending</strong>
+          </div>
+        </div>
+        <div class="release-grid">
+          <div>
+            <h3>Refresh</h3>
+            <p>The production resource is planned to rebuild on the first of each month against a frozen upstream snapshot.</p>
+          </div>
+          <div>
+            <h3>Archive</h3>
+            <p>Historical releases remain immutable so a paper can cite the exact universe, selector version and panel used.</p>
+          </div>
+          <div>
+            <h3>Track change</h3>
+            <p>Release comparisons will show which genomes entered or left and how structural coverage changed as public genome space grew.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section shell origin-section">
+      <div class="origin-card">
+        <span class="eyebrow">Where this came from</span>
+        <blockquote>“I need a manageable bacterial genome set. Which genomes do I choose without quietly choosing the answer first?”</blockquote>
+        <p>BacSelect grew out of the source-genome selection problem in Project Finch, where more than 55,000 complete bacterial assemblies had to be reduced to a small benchmark panel before assembler performance was observed.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer shell">
+    <div>
+      <a class="brand footer-brand" href="#top"><img src="assets/mark.svg" alt="" width="26" height="26"><span>BacSelect</span></a>
+      <p>Bacterial genome diversity, at the scale you need.</p>
+    </div>
+    <div class="footer-meta">
+      <span>Development preview</span>
+      <a href="https://github.com/BacSelect/bacselect.github.io">Source</a>
+    </div>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>

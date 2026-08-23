@@ -1,0 +1,14 @@
+{
+  "resource": "BacSelect",
+  "status": "development-preview",
+  "release": null,
+  "selector_version": null,
+  "planned_min_n": 10,
+  "planned_max_n": 500,
+  "foundation": {
+    "project": "Project Finch Experiment 0",
+    "eligible_genomes": 55306,
+    "species_groups": 13765,
+    "structural_features": 12
+  }
+}
