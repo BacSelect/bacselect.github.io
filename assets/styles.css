@@ -43,7 +43,7 @@ nav a:hover { color: var(--accent); }
 .hero { padding: 60px 0 72px; }
 .status-pill { display: inline-flex; gap: 8px; align-items: center; padding: 8px 12px; border: 1px solid var(--line); border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; background: rgba(255,255,255,.28); }
 .status-pill span { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px rgba(91,92,240,.12); }
-h1 { margin: 28px 0 24px; max-width: 980px; font-size: clamp(56px, 8.4vw, 112px); line-height: .89; letter-spacing: -.075em; font-weight: 730; }
+h1 { margin: 28px 0 24px; max-width: 1120px; font-size: clamp(56px, 8.4vw, 112px); line-height: .89; letter-spacing: -.075em; font-weight: 730; }
 h1 em { color: var(--accent); font-style: normal; }
 .hero-copy { max-width: 760px; margin: 0 0 46px; color: var(--muted); font-size: clamp(18px, 2vw, 22px); line-height: 1.52; letter-spacing: -.018em; }
 
