@@ -20,7 +20,7 @@
       <span>BacSelect</span>
     </a>
     <nav aria-label="Primary navigation">
-      <a href="#how">How it works</a>
+      <a href="#explore">Explore</a>
       <a href="#method">Method</a>
       <a href="#releases">Releases</a>
       <a class="nav-cta" href="https://github.com/BacSelect/bacselect.github.io">GitHub</a>
@@ -31,15 +31,18 @@
     <section class="hero shell">
       <div class="status-pill"><span></span> Development preview</div>
       <h1>Bacterial genome diversity,<br><em>at the scale you need.</em></h1>
-      <p class="hero-copy">Choose how many genomes you can work with. BacSelect is being built to return a deterministic, reproducible panel that spans bacterial genome architecture without hand-picking organisms.</p>
+      <p class="hero-copy">Choose how many bacterial genomes you need. BacSelect will return a reproducible panel designed to span genome architecture across the available complete-genome collection.</p>
 
-      <div class="selector-card" aria-labelledby="selector-title">
+      <div id="explore" class="selector-card" aria-labelledby="selector-title">
         <div class="selector-heading">
           <div>
             <span class="eyebrow" id="selector-title">How many genomes?</span>
             <div class="n-display"><span id="nValue">100</span><span class="n-unit">genomes</span></div>
           </div>
-          <span class="range-label">10–500</span>
+          <div class="custom-control">
+            <label for="nInput">Custom</label>
+            <input id="nInput" type="number" min="10" max="500" step="1" value="100" inputmode="numeric" aria-label="Custom number of genomes">
+          </div>
         </div>
 
         <input id="nSlider" type="range" min="10" max="500" step="1" value="100" aria-label="Number of genomes">
@@ -54,17 +57,16 @@
         </div>
 
         <button id="buildButton" class="build-button" type="button">
-          <span>Build my panel</span>
+          <span>Select genomes</span>
           <span aria-hidden="true">↗</span>
         </button>
-        <p id="buildNote" class="build-note" role="status">The general N-selector is under validation. No BacSelect panel is released yet.</p>
+        <p id="buildNote" class="build-note" role="status">Panel generation will activate with the first validated BacSelect release.</p>
       </div>
 
-      <div class="foundation" aria-label="Method foundation">
-        <div><strong>55,306</strong><span>foundation genomes</span></div>
+      <div class="foundation" aria-label="Project Finch foundation universe">
+        <div><strong>55,306</strong><span>eligible complete genomes</span></div>
         <div><strong>13,765</strong><span>species groups</span></div>
         <div><strong>12</strong><span>structural dimensions</span></div>
-        <div><strong>1</strong><span>deterministic selector</span></div>
       </div>
       <p class="foundation-note">Foundation figures are from the frozen Project Finch source-genome analysis that motivated BacSelect. BacSelect's first independent release will have its own versioned source universe.</p>
     </section>
