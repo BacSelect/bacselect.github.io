@@ -22,6 +22,7 @@
     <nav aria-label="Primary navigation">
       <a href="#explore">Explore</a>
       <a href="#method">Method</a>
+      <a href="#validation">Validation</a>
       <a href="#releases">Releases</a>
       <a
         id="scientificRepoLink"
@@ -81,8 +82,9 @@
             <span class="eyebrow">Panel status</span>
             <h2 id="resultTitle">No validated panel released yet</h2>
             <p id="resultLead">
-              BacSelect is still under prospective selector validation. No
-              genome identities are being served from the development preview.
+              BacSelect validation is underway and no selector version has
+              been frozen. No genome identities are being served from the
+              development preview.
             </p>
           </div>
           <div class="result-n">
@@ -209,14 +211,98 @@
           <p>BacSelect does not represent all bacterial life. Its source universe reflects what has been sampled, sequenced, assembled to completion and deposited in the public archive. BacSelect reduces arbitrary selection within that defined universe; it cannot remove biases already present in the underlying data.</p>
         </div>
 
+        <div class="method-tooling">
+          <span class="eyebrow">Methods &amp; tooling</span>
+          <p>Public complete bacterial assemblies are sourced from <strong>INSDC/GenBank</strong> through <strong>NCBI Datasets</strong>. BacSelect selection and validation are implemented in <strong>Python</strong> using <strong>NumPy</strong> and <strong>SciPy</strong>. The current development foundation uses structural features generated for <strong>Project Finch</strong>. Exact software versions, environments and checksums are recorded in the scientific repository.</p>
+        </div>
+
         <div class="validation-strip">
           <div>
             <span class="eyebrow">Validation</span>
-            <strong>Selector choice is prospective and identity-blinded.</strong>
+            <strong>Prospective. Identity-blinded. Still in progress.</strong>
           </div>
-          <p>Candidate selectors are evaluated using pre-specified coverage metrics before genome identities are inspected. The development preview will not serve panels until that validation is complete.</p>
-          <a href="https://github.com/BacSelect/bacselect">Scientific repository <span aria-hidden="true">→</span></a>
+          <p>Core selector comparisons and diagnostics are frozen. Feature sensitivity analysis is now underway, with genome and species identities still blinded.</p>
+          <a href="#validation">Validation status <span aria-hidden="true">→</span></a>
         </div>
+      </div>
+    </section>
+
+    <section id="validation" class="section shell validation-section">
+      <div class="validation-heading">
+        <div>
+          <span class="eyebrow">Validation status</span>
+          <h2>Validation<br>before release.</h2>
+        </div>
+
+        <div class="validation-heading-copy">
+          <div class="validation-state">
+            <span class="validation-state-dot" aria-hidden="true"></span>
+            <span>Feature sensitivity analysis in progress</span>
+          </div>
+          <p>BacSelect follows a pre-specified, identity-blinded validation plan. Public panels remain unavailable until the selector and structural-feature schema are frozen.</p>
+        </div>
+      </div>
+
+      <div class="validation-progress-grid" aria-label="BacSelect validation progress">
+        <article class="validation-stage complete">
+          <div class="validation-stage-top">
+            <span class="validation-stage-number">01</span>
+            <span class="validation-stage-status">Complete</span>
+          </div>
+          <h3>Candidate comparison</h3>
+          <p>The candidate selectors have been compared across all six planned panel sizes. The selector decision remains open.</p>
+        </article>
+
+        <article class="validation-stage complete">
+          <div class="validation-stage-top">
+            <span class="validation-stage-number">02</span>
+            <span class="validation-stage-status">Complete</span>
+          </div>
+          <h3>Random baseline</h3>
+          <p>Structural coverage has been benchmarked against 1,000 species-balanced random panels.</p>
+        </article>
+
+        <article class="validation-stage complete">
+          <div class="validation-stage-top">
+            <span class="validation-stage-number">03</span>
+            <span class="validation-stage-status">Complete</span>
+          </div>
+          <h3>Species representation</h3>
+          <p>Selection has been checked for repeated representation of the same species as panel size increases.</p>
+        </article>
+
+        <article class="validation-stage complete">
+          <div class="validation-stage-top">
+            <span class="validation-stage-number">04</span>
+            <span class="validation-stage-status">Complete</span>
+          </div>
+          <h3>Feature correlation</h3>
+          <p>Rank associations among all 12 structural dimensions have been mapped before feature sensitivity testing.</p>
+        </article>
+
+        <article class="validation-stage current">
+          <div class="validation-stage-top">
+            <span class="validation-stage-number">05</span>
+            <span class="validation-stage-status">In progress</span>
+          </div>
+          <h3>Feature sensitivity</h3>
+          <p>Each structural dimension is being removed in turn, followed by grouped feature-ablation analyses.</p>
+        </article>
+
+        <article class="validation-stage pending">
+          <div class="validation-stage-top">
+            <span class="validation-stage-number">06</span>
+            <span class="validation-stage-status">Pending</span>
+          </div>
+          <h3>Repeat-scale validation</h3>
+          <p>Repeat-length choices will be tested prospectively before the structural-feature schema is frozen.</p>
+        </article>
+      </div>
+
+      <div class="validation-summary">
+        <strong>Selector decision remains open.</strong>
+        <p>No genome or species identities are exposed during selector validation. BacSelect will not serve public panels until the remaining validation is complete.</p>
+        <a href="https://github.com/BacSelect/bacselect">Follow the validation <span aria-hidden="true">→</span></a>
       </div>
     </section>
 
