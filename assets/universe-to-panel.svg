@@ -1,161 +1,586 @@
 <svg
   xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 1200 610"
+  viewBox="0 0 1260 650"
   role="img"
   aria-labelledby="title desc"
 >
-  <title id="title">From public genome archive to BacSelect panel</title>
+  <title id="title">Universe to panel</title>
   <desc id="desc">
-    An uneven public complete-genome archive is represented in
-    species-balanced genome-architecture space and reduced to a compact,
-    deterministic BacSelect panel.
+    BacSelect starts from eligible public complete bacterial genomes,
+    ranks representative genomes to span genome architecture,
+    and the first N genomes form the selected panel.
   </desc>
 
   <defs>
-    <marker
-      id="arrow"
-      viewBox="0 0 10 10"
-      refX="8"
-      refY="5"
-      markerWidth="7"
-      markerHeight="7"
-      orient="auto"
+    <style>
+      .primary {
+        fill: #141717;
+        font-family: Inter, "Segoe UI", sans-serif;
+      }
+
+      .secondary {
+        fill: #7f8683;
+        font-family: Inter, "Segoe UI", sans-serif;
+      }
+
+      .eligible {
+        fill: #7f8683;
+        opacity: .52;
+      }
+
+      .selected {
+        fill: #5b5cf0;
+      }
+
+      .ranking-line {
+        fill: none;
+        stroke: #8d8df8;
+        stroke-width: 1.7;
+        stroke-linecap: round;
+        opacity: .45;
+      }
+
+      .boundary {
+        fill: none;
+        stroke: #7f8683;
+        stroke-width: 1.3;
+        stroke-dasharray: 5 7;
+        opacity: .28;
+      }
+    </style>
+
+    <!--
+      Hide ranking lines beneath every genome point.
+      This keeps the semi-transparent grey genomes visually
+      in front of the purple guide lines.
+    -->
+    <mask
+      id="hide-lines-under-genomes"
+      maskUnits="userSpaceOnUse"
+      maskContentUnits="userSpaceOnUse"
+      x="0"
+      y="0"
+      width="1260"
+      height="650"
+      style="mask-type:luminance"
     >
-      <path d="M0 0 L10 5 L0 10 z" fill="#5b5cf0"/>
-    </marker>
+      <rect x="0" y="0" width="1260" height="650" fill="white"/>
+
+      <g fill="black">
+
+        <!-- Universe: upper region -->
+        <circle cx="560" cy="125" r="8.5"/>
+        <circle cx="601" cy="101" r="8.5"/>
+        <circle cx="645" cy="117" r="8.5"/>
+        <circle cx="686" cy="91"  r="8.5"/>
+        <circle cx="728" cy="108" r="8.5"/>
+        <circle cx="771" cy="90"  r="11.5"/>
+        <circle cx="815" cy="110" r="8.5"/>
+        <circle cx="858" cy="127" r="8.5"/>
+        <circle cx="900" cy="149" r="8.5"/>
+
+        <circle cx="535" cy="166" r="8.5"/>
+        <circle cx="580" cy="159" r="11.5"/>
+        <circle cx="623" cy="173" r="8.5"/>
+        <circle cx="665" cy="155" r="8.5"/>
+        <circle cx="707" cy="170" r="8.5"/>
+        <circle cx="750" cy="151" r="8.5"/>
+        <circle cx="793" cy="166" r="8.5"/>
+        <circle cx="836" cy="151" r="8.5"/>
+        <circle cx="878" cy="174" r="8.5"/>
+        <circle cx="920" cy="190" r="8.5"/>
+
+        <!-- Universe: upper-middle -->
+        <circle cx="520" cy="210" r="8.5"/>
+        <circle cx="562" cy="205" r="8.5"/>
+        <circle cx="605" cy="218" r="8.5"/>
+        <circle cx="647" cy="202" r="8.5"/>
+        <circle cx="690" cy="217" r="8.5"/>
+        <circle cx="732" cy="199" r="8.5"/>
+        <circle cx="775" cy="215" r="8.5"/>
+        <circle cx="818" cy="201" r="8.5"/>
+        <circle cx="861" cy="218" r="8.5"/>
+        <circle cx="903" cy="231" r="11.5"/>
+        <circle cx="941" cy="247" r="8.5"/>
+
+        <circle cx="513" cy="255" r="8.5"/>
+        <circle cx="553" cy="254" r="8.5"/>
+        <circle cx="595" cy="265" r="8.5"/>
+        <circle cx="637" cy="249" r="11.5"/>
+        <circle cx="679" cy="263" r="8.5"/>
+        <circle cx="721" cy="246" r="8.5"/>
+        <circle cx="764" cy="262" r="8.5"/>
+        <circle cx="807" cy="247" r="8.5"/>
+        <circle cx="849" cy="263" r="8.5"/>
+        <circle cx="891" cy="251" r="8.5"/>
+        <circle cx="930" cy="276" r="8.5"/>
+        <circle cx="958" cy="293" r="8.5"/>
+
+        <!-- Universe: centre -->
+        <circle cx="506" cy="301" r="8.5"/>
+        <circle cx="546" cy="300" r="8.5"/>
+        <circle cx="587" cy="313" r="8.5"/>
+        <circle cx="629" cy="297" r="8.5"/>
+        <circle cx="671" cy="311" r="8.5"/>
+        <circle cx="714" cy="296" r="8.5"/>
+        <circle cx="756" cy="312" r="8.5"/>
+        <circle cx="799" cy="296" r="11.5"/>
+        <circle cx="842" cy="311" r="8.5"/>
+        <circle cx="884" cy="299" r="8.5"/>
+        <circle cx="925" cy="316" r="8.5"/>
+        <circle cx="961" cy="337" r="8.5"/>
+
+        <circle cx="508" cy="347" r="8.5"/>
+        <circle cx="548" cy="346" r="11.5"/>
+        <circle cx="590" cy="358" r="8.5"/>
+        <circle cx="632" cy="343" r="8.5"/>
+        <circle cx="674" cy="357" r="8.5"/>
+        <circle cx="716" cy="342" r="8.5"/>
+        <circle cx="759" cy="358" r="8.5"/>
+        <circle cx="802" cy="343" r="8.5"/>
+        <circle cx="844" cy="358" r="8.5"/>
+        <circle cx="887" cy="346" r="8.5"/>
+        <circle cx="928" cy="364" r="8.5"/>
+        <circle cx="958" cy="382" r="8.5"/>
+
+        <!-- Universe: lower-middle -->
+        <circle cx="517" cy="392" r="8.5"/>
+        <circle cx="558" cy="399" r="8.5"/>
+        <circle cx="600" cy="405" r="8.5"/>
+        <circle cx="642" cy="390" r="8.5"/>
+        <circle cx="684" cy="405" r="8.5"/>
+        <circle cx="727" cy="390" r="8.5"/>
+        <circle cx="769" cy="406" r="8.5"/>
+        <circle cx="812" cy="391" r="8.5"/>
+        <circle cx="854" cy="406" r="11.5"/>
+        <circle cx="896" cy="394" r="8.5"/>
+        <circle cx="936" cy="410" r="8.5"/>
+
+        <circle cx="532" cy="437" r="8.5"/>
+        <circle cx="573" cy="444" r="8.5"/>
+        <circle cx="615" cy="453" r="8.5"/>
+        <circle cx="658" cy="439" r="8.5"/>
+        <circle cx="700" cy="454" r="8.5"/>
+        <circle cx="743" cy="440" r="8.5"/>
+        <circle cx="785" cy="455" r="8.5"/>
+        <circle cx="827" cy="440" r="8.5"/>
+        <circle cx="870" cy="454" r="8.5"/>
+        <circle cx="911" cy="441" r="8.5"/>
+
+        <!-- Universe: lower region -->
+        <circle cx="553" cy="481" r="8.5"/>
+        <circle cx="595" cy="491" r="8.5"/>
+        <circle cx="637" cy="500" r="8.5"/>
+        <circle cx="679" cy="486" r="11.5"/>
+        <circle cx="721" cy="501" r="8.5"/>
+        <circle cx="763" cy="488" r="8.5"/>
+        <circle cx="806" cy="501" r="8.5"/>
+        <circle cx="848" cy="488" r="8.5"/>
+        <circle cx="889" cy="479" r="8.5"/>
+
+        <circle cx="585" cy="524" r="8.5"/>
+        <circle cx="627" cy="535" r="8.5"/>
+        <circle cx="670" cy="542" r="8.5"/>
+        <circle cx="713" cy="530" r="8.5"/>
+        <circle cx="755" cy="542" r="8.5"/>
+        <circle cx="797" cy="531" r="8.5"/>
+        <circle cx="839" cy="521" r="8.5"/>
+
+        <!-- Ranked panel nodes -->
+        <circle cx="1112" cy="205" r="12.5"/>
+        <circle cx="1112" cy="255" r="12.5"/>
+        <circle cx="1112" cy="305" r="12.5"/>
+        <circle cx="1112" cy="355" r="12.5"/>
+        <circle cx="1112" cy="405" r="12.5"/>
+        <circle cx="1112" cy="455" r="12.5"/>
+        <circle cx="1112" cy="505" r="12.5"/>
+
+      </g>
+    </mask>
   </defs>
 
-  <g fill="none" stroke="#d4d0c6" stroke-width="2">
-    <rect x="42" y="70" width="330" height="430" rx="28"/>
-    <rect x="435" y="70" width="330" height="430" rx="28"/>
-    <rect x="828" y="70" width="330" height="430" rx="28"/>
-  </g>
 
-  <g
-    fill="#141717"
-    font-family="Inter,Segoe UI,sans-serif"
-    text-anchor="middle"
+  <!-- =========================================================
+       LEFT: explanation
+       ========================================================= -->
+
+  <text
+    x="45"
+    y="72"
+    class="primary"
+    font-size="40"
+    font-weight="700"
   >
-    <text x="207" y="112" font-size="18" font-weight="700">
-      Public complete-genome universe
-    </text>
-    <text x="600" y="112" font-size="18" font-weight="700">
-      Architecture space
-    </text>
-    <text x="993" y="112" font-size="18" font-weight="700">
-      BacSelect panel
-    </text>
-  </g>
+    Universe to
+    <tspan fill="#5b5cf0"> panel</tspan>
+  </text>
 
-  <!-- Uneven archive -->
-  <g fill="#9ca29f" opacity=".63">
-    <circle cx="113" cy="206" r="8"/>
-    <circle cx="139" cy="190" r="7"/>
-    <circle cx="164" cy="216" r="8"/>
-    <circle cx="190" cy="197" r="7"/>
-    <circle cx="216" cy="225" r="8"/>
-    <circle cx="128" cy="244" r="7"/>
-    <circle cx="160" cy="255" r="8"/>
-    <circle cx="196" cy="263" r="7"/>
-    <circle cx="230" cy="252" r="8"/>
-    <circle cx="107" cy="282" r="7"/>
-    <circle cx="143" cy="300" r="8"/>
-    <circle cx="180" cy="291" r="7"/>
-    <circle cx="218" cy="309" r="8"/>
-    <circle cx="250" cy="289" r="7"/>
-    <circle cx="124" cy="339" r="7"/>
-    <circle cx="171" cy="349" r="8"/>
-    <circle cx="218" cy="355" r="7"/>
-    <circle cx="268" cy="342" r="8"/>
+  <text
+    x="45"
+    y="125"
+    class="secondary"
+    font-size="21"
+  >
+    Start with eligible public complete genomes.
+  </text>
 
-    <circle cx="84" cy="163" r="7"/>
-    <circle cx="292" cy="180" r="7"/>
-    <circle cx="318" cy="245" r="7"/>
-    <circle cx="87" cy="396" r="7"/>
-    <circle cx="299" cy="405" r="7"/>
-  </g>
+  <text
+    x="45"
+    y="156"
+    class="secondary"
+    font-size="21"
+  >
+    Rank genomes to span genome architecture.
+  </text>
 
-  <path
-    d="M388 286 L419 286"
-    fill="none"
-    stroke="#5b5cf0"
+
+  <!-- Legend -->
+
+  <circle cx="67" cy="238" r="12" class="eligible"/>
+
+  <text
+    x="96"
+    y="245"
+    class="primary"
+    font-size="20"
+  >
+    Eligible genome
+  </text>
+
+
+  <circle cx="67" cy="301" r="12" class="selected"/>
+
+  <text
+    x="96"
+    y="308"
+    class="primary"
+    font-size="20"
+  >
+    Selected (panel) genome
+  </text>
+
+
+  <line
+    x1="54"
+    y1="364"
+    x2="80"
+    y2="364"
+    stroke="#8d8df8"
     stroke-width="3"
-    marker-end="url(#arrow)"
+    stroke-linecap="round"
   />
 
-  <!-- Balanced architecture space -->
-  <g stroke="#d4d0c6" stroke-width="1.5">
-    <line x1="490" y1="412" x2="712" y2="412"/>
-    <line x1="490" y1="412" x2="490" y2="164"/>
-  </g>
+  <text
+    x="96"
+    y="371"
+    class="primary"
+    font-size="20"
+  >
+    Rank order
+  </text>
 
-  <g fill="#9ca29f" opacity=".68">
-    <circle cx="520" cy="382" r="7"/>
-    <circle cx="552" cy="351" r="7"/>
-    <circle cx="588" cy="375" r="7"/>
-    <circle cx="623" cy="328" r="7"/>
-    <circle cx="664" cy="356" r="7"/>
-    <circle cx="698" cy="310" r="7"/>
-    <circle cx="530" cy="293" r="7"/>
-    <circle cx="574" cy="269" r="7"/>
-    <circle cx="623" cy="278" r="7"/>
-    <circle cx="674" cy="239" r="7"/>
-    <circle cx="544" cy="221" r="7"/>
-    <circle cx="598" cy="198" r="7"/>
-    <circle cx="652" cy="183" r="7"/>
-    <circle cx="706" cy="153" r="7"/>
-  </g>
 
-  <path
-    d="M781 286 L812 286"
+  <!-- Callout -->
+
+  <rect
+    x="45"
+    y="432"
+    width="390"
+    height="100"
+    rx="14"
     fill="none"
-    stroke="#5b5cf0"
-    stroke-width="3"
-    marker-end="url(#arrow)"
+    stroke="#8d8df8"
+    stroke-width="1.8"
   />
 
-  <!-- Selected panel -->
-  <g fill="#5b5cf0">
-    <circle cx="878" cy="383" r="10"/>
-    <circle cx="924" cy="345" r="10"/>
-    <circle cx="986" cy="374" r="10"/>
-    <circle cx="1075" cy="329" r="10"/>
-    <circle cx="891" cy="279" r="10"/>
-    <circle cx="978" cy="265" r="10"/>
-    <circle cx="1092" cy="239" r="10"/>
-    <circle cx="927" cy="204" r="10"/>
-    <circle cx="1024" cy="188" r="10"/>
-    <circle cx="1107" cy="151" r="10"/>
-  </g>
+  <text
+    x="72"
+    y="472"
+    fill="#5b5cf0"
+    font-family="Inter, 'Segoe UI', sans-serif"
+    font-size="18"
+    font-weight="700"
+  >
+    one deterministic ranking
+  </text>
+
+  <text
+    x="72"
+    y="506"
+    class="primary"
+    font-size="18"
+  >
+    choose N → first N genomes
+  </text>
+
+
+  <!-- =========================================================
+       RIGHT: genome universe
+       ========================================================= -->
+
+  <ellipse
+    cx="735"
+    cy="318"
+    rx="248"
+    ry="260"
+    class="boundary"
+  />
+
+
+  <!--
+    Six representative guide lines correspond directly
+    to ranks 1–6 in the panel.
+
+    They are deliberately faint, drawn behind the points,
+    and masked beneath every grey and purple genome.
+  -->
 
   <g
-    stroke="#c4c1ff"
-    stroke-width="1.6"
-    opacity=".8"
+    id="ranking-lines"
+    mask="url(#hide-lines-under-genomes)"
   >
-    <line x1="878" y1="383" x2="924" y2="345"/>
-    <line x1="924" y1="345" x2="986" y2="374"/>
-    <line x1="986" y1="374" x2="1075" y2="329"/>
-    <line x1="891" y1="279" x2="978" y2="265"/>
-    <line x1="978" y1="265" x2="1092" y2="239"/>
-    <line x1="927" y1="204" x2="1024" y2="188"/>
-    <line x1="1024" y1="188" x2="1107" y2="151"/>
+    <!-- rank 1 -->
+    <path
+      d="M771 90
+         C900 108 997 145 1112 205"
+      class="ranking-line"
+    />
+
+    <!-- rank 2 -->
+    <path
+      d="M580 159
+         C770 166 958 192 1112 255"
+      class="ranking-line"
+    />
+
+    <!-- rank 3 -->
+    <path
+      d="M903 231
+         C982 238 1048 264 1112 305"
+      class="ranking-line"
+    />
+
+    <!-- rank 4 -->
+    <path
+      d="M637 249
+         C810 278 974 318 1112 355"
+      class="ranking-line"
+    />
+
+    <!-- rank 5 -->
+    <path
+      d="M799 296
+         C915 325 1020 365 1112 405"
+      class="ranking-line"
+    />
+
+    <!-- rank 6 -->
+    <path
+      d="M548 346
+         C760 390 954 425 1112 455"
+      class="ranking-line"
+    />
   </g>
 
-  <g
-    font-family="Inter,Segoe UI,sans-serif"
-    font-size="16"
-    font-weight="650"
-    text-anchor="middle"
-  >
-    <text x="207" y="465" fill="#6d7371">
-      Uneven archive
-    </text>
-    <text x="600" y="465" fill="#6d7371">
-      Species-balanced space
-    </text>
-    <text x="993" y="465" fill="#5b5cf0">
-      Compact deterministic panel
-    </text>
+
+  <!-- =========================================================
+       ELIGIBLE GENOME UNIVERSE
+       ========================================================= -->
+
+  <g id="genome-universe">
+
+    <!-- Upper region -->
+    <circle cx="560" cy="125" r="8" class="eligible"/>
+    <circle cx="601" cy="101" r="8" class="eligible"/>
+    <circle cx="645" cy="117" r="8" class="eligible"/>
+    <circle cx="686" cy="91"  r="8" class="eligible"/>
+    <circle cx="728" cy="108" r="8" class="eligible"/>
+    <circle cx="771" cy="90"  r="11" class="selected"/>
+    <circle cx="815" cy="110" r="8" class="eligible"/>
+    <circle cx="858" cy="127" r="8" class="eligible"/>
+    <circle cx="900" cy="149" r="8" class="eligible"/>
+
+    <circle cx="535" cy="166" r="8" class="eligible"/>
+    <circle cx="580" cy="159" r="11" class="selected"/>
+    <circle cx="623" cy="173" r="8" class="eligible"/>
+    <circle cx="665" cy="155" r="8" class="eligible"/>
+    <circle cx="707" cy="170" r="8" class="eligible"/>
+    <circle cx="750" cy="151" r="8" class="eligible"/>
+    <circle cx="793" cy="166" r="8" class="eligible"/>
+    <circle cx="836" cy="151" r="8" class="eligible"/>
+    <circle cx="878" cy="174" r="8" class="eligible"/>
+    <circle cx="920" cy="190" r="8" class="eligible"/>
+
+    <!-- Upper-middle -->
+    <circle cx="520" cy="210" r="8" class="eligible"/>
+    <circle cx="562" cy="205" r="8" class="eligible"/>
+    <circle cx="605" cy="218" r="8" class="eligible"/>
+    <circle cx="647" cy="202" r="8" class="eligible"/>
+    <circle cx="690" cy="217" r="8" class="eligible"/>
+    <circle cx="732" cy="199" r="8" class="eligible"/>
+    <circle cx="775" cy="215" r="8" class="eligible"/>
+    <circle cx="818" cy="201" r="8" class="eligible"/>
+    <circle cx="861" cy="218" r="8" class="eligible"/>
+    <circle cx="903" cy="231" r="11" class="selected"/>
+    <circle cx="941" cy="247" r="8" class="eligible"/>
+
+    <circle cx="513" cy="255" r="8" class="eligible"/>
+    <circle cx="553" cy="254" r="8" class="eligible"/>
+    <circle cx="595" cy="265" r="8" class="eligible"/>
+    <circle cx="637" cy="249" r="11" class="selected"/>
+    <circle cx="679" cy="263" r="8" class="eligible"/>
+    <circle cx="721" cy="246" r="8" class="eligible"/>
+    <circle cx="764" cy="262" r="8" class="eligible"/>
+    <circle cx="807" cy="247" r="8" class="eligible"/>
+    <circle cx="849" cy="263" r="8" class="eligible"/>
+    <circle cx="891" cy="251" r="8" class="eligible"/>
+    <circle cx="930" cy="276" r="8" class="eligible"/>
+    <circle cx="958" cy="293" r="8" class="eligible"/>
+
+    <!-- Centre -->
+    <circle cx="506" cy="301" r="8" class="eligible"/>
+    <circle cx="546" cy="300" r="8" class="eligible"/>
+    <circle cx="587" cy="313" r="8" class="eligible"/>
+    <circle cx="629" cy="297" r="8" class="eligible"/>
+    <circle cx="671" cy="311" r="8" class="eligible"/>
+    <circle cx="714" cy="296" r="8" class="eligible"/>
+    <circle cx="756" cy="312" r="8" class="eligible"/>
+    <circle cx="799" cy="296" r="11" class="selected"/>
+    <circle cx="842" cy="311" r="8" class="eligible"/>
+    <circle cx="884" cy="299" r="8" class="eligible"/>
+    <circle cx="925" cy="316" r="8" class="eligible"/>
+    <circle cx="961" cy="337" r="8" class="eligible"/>
+
+    <circle cx="508" cy="347" r="8" class="eligible"/>
+    <circle cx="548" cy="346" r="11" class="selected"/>
+    <circle cx="590" cy="358" r="8" class="eligible"/>
+    <circle cx="632" cy="343" r="8" class="eligible"/>
+    <circle cx="674" cy="357" r="8" class="eligible"/>
+    <circle cx="716" cy="342" r="8" class="eligible"/>
+    <circle cx="759" cy="358" r="8" class="eligible"/>
+    <circle cx="802" cy="343" r="8" class="eligible"/>
+    <circle cx="844" cy="358" r="8" class="eligible"/>
+    <circle cx="887" cy="346" r="8" class="eligible"/>
+    <circle cx="928" cy="364" r="8" class="eligible"/>
+    <circle cx="958" cy="382" r="8" class="eligible"/>
+
+    <!-- Lower-middle -->
+    <circle cx="517" cy="392" r="8" class="eligible"/>
+    <circle cx="558" cy="399" r="8" class="eligible"/>
+    <circle cx="600" cy="405" r="8" class="eligible"/>
+    <circle cx="642" cy="390" r="8" class="eligible"/>
+    <circle cx="684" cy="405" r="8" class="eligible"/>
+    <circle cx="727" cy="390" r="8" class="eligible"/>
+    <circle cx="769" cy="406" r="8" class="eligible"/>
+    <circle cx="812" cy="391" r="8" class="eligible"/>
+    <circle cx="854" cy="406" r="11" class="selected"/>
+    <circle cx="896" cy="394" r="8" class="eligible"/>
+    <circle cx="936" cy="410" r="8" class="eligible"/>
+
+    <circle cx="532" cy="437" r="8" class="eligible"/>
+    <circle cx="573" cy="444" r="8" class="eligible"/>
+    <circle cx="615" cy="453" r="8" class="eligible"/>
+    <circle cx="658" cy="439" r="8" class="eligible"/>
+    <circle cx="700" cy="454" r="8" class="eligible"/>
+    <circle cx="743" cy="440" r="8" class="eligible"/>
+    <circle cx="785" cy="455" r="8" class="eligible"/>
+    <circle cx="827" cy="440" r="8" class="eligible"/>
+    <circle cx="870" cy="454" r="8" class="eligible"/>
+    <circle cx="911" cy="441" r="8" class="eligible"/>
+
+    <!-- Lower region -->
+    <circle cx="553" cy="481" r="8" class="eligible"/>
+    <circle cx="595" cy="491" r="8" class="eligible"/>
+    <circle cx="637" cy="500" r="8" class="eligible"/>
+    <circle cx="679" cy="486" r="11" class="selected"/>
+    <circle cx="721" cy="501" r="8" class="eligible"/>
+    <circle cx="763" cy="488" r="8" class="eligible"/>
+    <circle cx="806" cy="501" r="8" class="eligible"/>
+    <circle cx="848" cy="488" r="8" class="eligible"/>
+    <circle cx="889" cy="479" r="8" class="eligible"/>
+
+    <circle cx="585" cy="524" r="8" class="eligible"/>
+    <circle cx="627" cy="535" r="8" class="eligible"/>
+    <circle cx="670" cy="542" r="8" class="eligible"/>
+    <circle cx="713" cy="530" r="8" class="eligible"/>
+    <circle cx="755" cy="542" r="8" class="eligible"/>
+    <circle cx="797" cy="531" r="8" class="eligible"/>
+    <circle cx="839" cy="521" r="8" class="eligible"/>
+
   </g>
+
+
+  <!-- =========================================================
+       ORDERED PANEL
+       ========================================================= -->
+
+  <g id="panel">
+
+    <rect
+      x="1024"
+      y="112"
+      width="196"
+      height="452"
+      rx="18"
+      fill="none"
+      stroke="#8d8df8"
+      stroke-width="1.8"
+    />
+
+    <text
+      x="1050"
+      y="148"
+      class="primary"
+      font-size="18"
+      font-weight="700"
+    >
+      Panel
+    </text>
+
+    <text
+      x="1050"
+      y="173"
+      class="secondary"
+      font-size="14"
+    >
+      first N genomes
+    </text>
+
+
+    <!-- Ranked genomes -->
+
+    <text x="1054" y="211" class="primary" font-size="15">1</text>
+    <circle cx="1112" cy="205" r="12" class="selected"/>
+
+    <text x="1054" y="261" class="primary" font-size="15">2</text>
+    <circle cx="1112" cy="255" r="12" class="selected"/>
+
+    <text x="1054" y="311" class="primary" font-size="15">3</text>
+    <circle cx="1112" cy="305" r="12" class="selected"/>
+
+    <text x="1054" y="361" class="primary" font-size="15">4</text>
+    <circle cx="1112" cy="355" r="12" class="selected"/>
+
+    <text x="1054" y="411" class="primary" font-size="15">5</text>
+    <circle cx="1112" cy="405" r="12" class="selected"/>
+
+    <text x="1054" y="461" class="primary" font-size="15">6</text>
+    <circle cx="1112" cy="455" r="12" class="selected"/>
+
+    <text x="1054" y="511" class="primary" font-size="18">⋮</text>
+    <circle cx="1112" cy="505" r="12" class="selected"/>
+
+    <text
+      x="1050"
+      y="546"
+      fill="#5b5cf0"
+      font-family="Inter, 'Segoe UI', sans-serif"
+      font-size="14"
+      font-weight="700"
+    >
+      take first N
+    </text>
+
+  </g>
+
 </svg>
