@@ -10,7 +10,7 @@ This repository hosts the BacSelect website at <https://bacselect.github.io/>.
 
 The site is intentionally labelled as a development preview. The public interface is deployed, while selector-v1 validation is still in progress. No BacSelect panel or independent BacSelect source-universe release has yet been published.
 
-The initial design grew from Project Finch Experiment 0, whose frozen source analysis contained:
+The initial design grew from a practical bacterial-genome benchmarking problem. Its frozen development universe contained:
 
 - 55,306 eligible genomes;
 - 13,765 species groups; and
@@ -18,19 +18,51 @@ The initial design grew from Project Finch Experiment 0, whose frozen source ana
 
 These figures are foundation/provenance values, not a BacSelect release.
 
+## Project context
+
+BacSelect is developed by Rhys White, Genomics & Bioinformatics, PHF Science,
+Aotearoa New Zealand.
+
+The resource originated from a practical bacterial-genome selection problem
+explored with support from Genomics Aotearoa.
+
+BacSelect is intended to remain free to use. BacSelect-authored code and
+website content in this repository are released under the MIT License.
+Third-party genome records, including records obtained from INSDC/GenBank,
+retain their upstream terms and are not relicensed by BacSelect.
+
+## Licence
+
+BacSelect-authored material in this repository is released under the
+[MIT License](LICENSE).
+
+This licence does not change the terms applying to third-party source data.
+In particular, BacSelect does not claim ownership of or relicense underlying
+INSDC/GenBank genome sequence records.
+
 ## Repository structure
 
 ```text
 .
+├── LICENSE
+├── README.md
 ├── index.html
 ├── assets/
 │   ├── app.js
 │   ├── mark.svg
+│   ├── nearest-distance.svg
+│   ├── nested-panels.svg
+│   ├── release-change.svg
+│   ├── universe-to-panel.svg
 │   └── styles.css
 ├── data/
 │   └── site.json
-└── .github/workflows/
-    └── pages.yml
+├── docs/
+│   ├── product-specification.md
+│   └── scientific-specification.md
+└── .github/
+    └── workflows/
+        └── pages.yml
 ```
 
 ## Local preview

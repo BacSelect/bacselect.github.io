@@ -190,26 +190,15 @@ The website should provide brief guidance for both cases.
 
 ## Licensing
 
-Licensing must be explicit before the first public BacSelect release.
+BacSelect uses the MIT License for BacSelect-authored software, website code,
+documentation, and bespoke website graphics.
 
-Provisional preferred model:
-
-- software source code: MIT License;
-- original BacSelect documentation and bespoke graphics: CC BY 4.0;
-- generated metadata: licence or terms to be frozen after provenance and
-  institutional requirements are checked.
-
-BacSelect must not claim ownership of, or attempt to relicense, underlying
+The licence does not alter the terms applying to third-party source data.
+BacSelect does not claim ownership of, or attempt to relicense, underlying
 INSDC genome sequence records.
 
-Before these licences are frozen, confirm:
-
-- PHF Science intellectual-property requirements;
-- fellowship or funder requirements;
-- upstream data terms;
-- any constraints affecting generated metadata or bundled sequences.
-
-No licence should be added merely because it is conventional.
+Release artefacts must distinguish BacSelect-authored metadata and provenance
+from third-party source records where relevant.
 
 ## Cost and access
 
@@ -316,7 +305,7 @@ Graphics should explain BacSelect rather than merely decorate it.
 All principal scientific illustrations should be native vector graphics where
 possible.
 
-Initial visual system should include three carefully designed concepts.
+Initial visual system should include four carefully designed concepts.
 
 ### 1. Universe to panel
 
@@ -334,7 +323,8 @@ Show panel growth such as:
 
 10 → 20 → 50 → 100
 
-Earlier selections remain present as N increases.
+The intended selector behaviour is that earlier selections remain present as N
+increases.
 
 Purpose:
 
@@ -472,7 +462,7 @@ Avoid inflated claims such as:
 ## Future publication
 
 BacSelect should be developed so that the resource itself can support a
-methods/resource publication independently of Project Finch.
+standalone methods/resource publication.
 
 A future manuscript could evaluate:
 

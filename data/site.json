@@ -9,10 +9,16 @@
     "min_n": 10,
     "max_n": 500,
     "default_n": 100,
-    "presets": [10, 20, 50, 100, 200, 500]
+    "presets": [
+      10,
+      20,
+      50,
+      100,
+      200,
+      500
+    ]
   },
   "foundation": {
-    "project": "Project Finch Experiment 0",
     "eligible_genomes": 55306,
     "species_groups": 13765,
     "structural_features": 12,
@@ -21,5 +27,18 @@
   "repositories": {
     "scientific": "https://github.com/BacSelect/bacselect",
     "website": "https://github.com/BacSelect/bacselect.github.io"
+  },
+  "project": {
+    "lead": "Rhys White",
+    "affiliation": "Genomics & Bioinformatics, PHF Science",
+    "location": "Aotearoa New Zealand",
+    "research_support": [
+      "Genomics Aotearoa"
+    ]
+  },
+  "access": {
+    "free": true,
+    "licence": "MIT",
+    "licence_spdx": "MIT"
   }
 }

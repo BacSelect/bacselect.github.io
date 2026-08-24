@@ -1,0 +1,108 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 1200 650"
+  role="img"
+  aria-labelledby="title desc"
+>
+  <title id="title">Nearest-panel structural distance</title>
+  <desc id="desc">
+    Genome points in architecture space are connected to their nearest
+    selected BacSelect panel genome. Shorter distances indicate denser
+    structural representation within the defined source universe.
+  </desc>
+
+  <g stroke="#454b49" stroke-width="1.5" fill="none">
+    <path d="M85 535 L1110 535"/>
+    <path d="M85 535 L85 95"/>
+  </g>
+
+  <g fill="#7f8683" opacity=".65">
+    <circle cx="155" cy="456" r="7"/>
+    <circle cx="201" cy="420" r="7"/>
+    <circle cx="245" cy="468" r="7"/>
+    <circle cx="298" cy="382" r="7"/>
+    <circle cx="343" cy="430" r="7"/>
+    <circle cx="390" cy="354" r="7"/>
+    <circle cx="438" cy="405" r="7"/>
+    <circle cx="490" cy="319" r="7"/>
+    <circle cx="545" cy="362" r="7"/>
+    <circle cx="594" cy="281" r="7"/>
+    <circle cx="648" cy="328" r="7"/>
+    <circle cx="695" cy="245" r="7"/>
+    <circle cx="742" cy="292" r="7"/>
+    <circle cx="796" cy="208" r="7"/>
+    <circle cx="846" cy="264" r="7"/>
+    <circle cx="905" cy="180" r="7"/>
+    <circle cx="959" cy="235" r="7"/>
+    <circle cx="1023" cy="142" r="7"/>
+    <circle cx="1068" cy="196" r="7"/>
+  </g>
+
+  <g
+    stroke="#8d8df8"
+    stroke-width="2"
+    stroke-dasharray="5 5"
+    opacity=".9"
+  >
+    <line x1="155" y1="456" x2="205" y2="437"/>
+    <line x1="245" y1="468" x2="205" y2="437"/>
+    <line x1="298" y1="382" x2="370" y2="370"/>
+    <line x1="438" y1="405" x2="370" y2="370"/>
+    <line x1="490" y1="319" x2="566" y2="312"/>
+    <line x1="648" y1="328" x2="566" y2="312"/>
+    <line x1="695" y1="245" x2="770" y2="239"/>
+    <line x1="846" y1="264" x2="770" y2="239"/>
+    <line x1="905" y1="180" x2="986" y2="185"/>
+    <line x1="1068" y1="196" x2="986" y2="185"/>
+  </g>
+
+  <g fill="#5b5cf0">
+    <circle cx="205" cy="437" r="12"/>
+    <circle cx="370" cy="370" r="12"/>
+    <circle cx="566" cy="312" r="12"/>
+    <circle cx="770" cy="239" r="12"/>
+    <circle cx="986" cy="185" r="12"/>
+  </g>
+
+  <g
+    font-family="Inter,Segoe UI,sans-serif"
+  >
+    <text
+      x="113"
+      y="120"
+      fill="#f7f5ee"
+      font-size="19"
+      font-weight="700"
+    >
+      Every eligible genome
+    </text>
+
+    <text
+      x="113"
+      y="146"
+      fill="#aeb5b3"
+      font-size="15"
+    >
+      is measured against its nearest selected panel genome
+    </text>
+
+    <text
+      x="792"
+      y="374"
+      fill="#8d8df8"
+      font-size="15"
+      font-weight="700"
+    >
+      nearest-panel distance
+    </text>
+
+    <text
+      x="792"
+      y="399"
+      fill="#aeb5b3"
+      font-size="14"
+    >
+      smaller = denser structural representation
+    </text>
+  </g>
+</svg>

@@ -1,0 +1,127 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 1200 500"
+  role="img"
+  aria-labelledby="title desc"
+>
+  <title id="title">Nested BacSelect panel sizes</title>
+  <desc id="desc">
+    BacSelect panel sizes are prefixes of one ordered diversity ladder.
+    Genomes selected at smaller panel sizes remain selected as N increases.
+  </desc>
+
+  <g
+    font-family="Inter,Segoe UI,sans-serif"
+    fill="#141717"
+  >
+    <text x="72" y="66" font-size="19" font-weight="700">
+      Same release
+    </text>
+    <text x="72" y="92" font-size="15" fill="#6d7371">
+      One ordered diversity ladder
+    </text>
+
+    <text
+      x="760"
+      y="76"
+      font-size="15"
+      font-weight="700"
+      fill="#5b5cf0"
+    >
+      Designed as one nested diversity ladder
+    </text>
+  </g>
+
+  <g
+    font-family="Inter,Segoe UI,sans-serif"
+    font-size="17"
+    font-weight="700"
+    fill="#141717"
+  >
+    <text x="76" y="151">N = 10</text>
+    <text x="76" y="213">N = 20</text>
+    <text x="76" y="275">N = 50</text>
+    <text x="76" y="337">N = 100</text>
+    <text x="76" y="399">N = 200</text>
+    <text x="76" y="461">N = 500</text>
+  </g>
+
+  <g
+    stroke="#d4d0c6"
+    stroke-width="1.5"
+    opacity=".8"
+  >
+    <line x1="220" y1="145" x2="1095" y2="145"/>
+    <line x1="220" y1="207" x2="1095" y2="207"/>
+    <line x1="220" y1="269" x2="1095" y2="269"/>
+    <line x1="220" y1="331" x2="1095" y2="331"/>
+    <line x1="220" y1="393" x2="1095" y2="393"/>
+    <line x1="220" y1="455" x2="1095" y2="455"/>
+  </g>
+
+  <g fill="#5b5cf0">
+    <!-- Shared prefix -->
+    <circle cx="240" cy="145" r="8"/>
+    <circle cx="265" cy="145" r="8"/>
+    <circle cx="290" cy="145" r="8"/>
+    <circle cx="315" cy="145" r="8"/>
+
+    <circle cx="240" cy="207" r="8"/>
+    <circle cx="265" cy="207" r="8"/>
+    <circle cx="290" cy="207" r="8"/>
+    <circle cx="315" cy="207" r="8"/>
+    <circle cx="340" cy="207" r="8"/>
+
+    <circle cx="240" cy="269" r="8"/>
+    <circle cx="265" cy="269" r="8"/>
+    <circle cx="290" cy="269" r="8"/>
+    <circle cx="315" cy="269" r="8"/>
+    <circle cx="340" cy="269" r="8"/>
+    <circle cx="365" cy="269" r="8"/>
+    <circle cx="390" cy="269" r="8"/>
+
+    <circle cx="240" cy="331" r="8"/>
+    <circle cx="265" cy="331" r="8"/>
+    <circle cx="290" cy="331" r="8"/>
+    <circle cx="315" cy="331" r="8"/>
+    <circle cx="340" cy="331" r="8"/>
+    <circle cx="365" cy="331" r="8"/>
+    <circle cx="390" cy="331" r="8"/>
+    <circle cx="415" cy="331" r="8"/>
+    <circle cx="440" cy="331" r="8"/>
+    <circle cx="465" cy="331" r="8"/>
+
+    <circle cx="240" cy="393" r="8"/>
+    <circle cx="265" cy="393" r="8"/>
+    <circle cx="290" cy="393" r="8"/>
+    <circle cx="315" cy="393" r="8"/>
+    <circle cx="340" cy="393" r="8"/>
+    <circle cx="365" cy="393" r="8"/>
+    <circle cx="390" cy="393" r="8"/>
+    <circle cx="415" cy="393" r="8"/>
+    <circle cx="440" cy="393" r="8"/>
+    <circle cx="465" cy="393" r="8"/>
+    <circle cx="490" cy="393" r="8"/>
+    <circle cx="515" cy="393" r="8"/>
+    <circle cx="540" cy="393" r="8"/>
+
+    <circle cx="240" cy="455" r="8"/>
+    <circle cx="265" cy="455" r="8"/>
+    <circle cx="290" cy="455" r="8"/>
+    <circle cx="315" cy="455" r="8"/>
+    <circle cx="340" cy="455" r="8"/>
+    <circle cx="365" cy="455" r="8"/>
+    <circle cx="390" cy="455" r="8"/>
+    <circle cx="415" cy="455" r="8"/>
+    <circle cx="440" cy="455" r="8"/>
+    <circle cx="465" cy="455" r="8"/>
+    <circle cx="490" cy="455" r="8"/>
+    <circle cx="515" cy="455" r="8"/>
+    <circle cx="540" cy="455" r="8"/>
+    <circle cx="565" cy="455" r="8"/>
+    <circle cx="590" cy="455" r="8"/>
+    <circle cx="615" cy="455" r="8"/>
+    <circle cx="640" cy="455" r="8"/>
+    <circle cx="665" cy="455" r="8"/>
+  </g>
+</svg>

@@ -25,10 +25,12 @@
       <span>BacSelect</span>
     </a>
     <nav aria-label="Primary navigation">
-      <a href="#explore">Explore</a>
+      <a href="#why">Why</a>
+      <a href="#scale">Scale</a>
       <a href="#method">Method</a>
       <a href="#validation">Validation</a>
       <a href="#releases">Releases</a>
+      <a href="#cite">Cite</a>
       <a
         id="scientificRepoLink"
         class="nav-cta"
@@ -44,8 +46,9 @@
         <span class="status-dot" aria-hidden="true"></span>
         <span id="statusLabel">Development preview</span>
       </div>
+      <p class="hero-question">We need a manageable set of bacterial genomes. Which ones?</p>
       <h1>Bacterial genome diversity,<br><em>at the scale you need.</em></h1>
-      <p class="hero-copy">Choose how many bacterial genomes you need. BacSelect will return a reproducible panel designed to span genome architecture across a defined public complete-genome collection.</p>
+      <p class="hero-copy">Choose how many genomes you can realistically analyse. BacSelect is being built to return a deterministic panel that spans bacterial genome architecture within a defined public complete-genome universe, while controlling the influence of heavily represented species.</p>
 
       <div id="explore" class="selector-card" aria-labelledby="selector-title">
         <div class="selector-heading">
@@ -68,6 +71,12 @@
           <button type="button" data-n="100" class="active">100</button>
           <button type="button" data-n="200">200</button>
           <button type="button" data-n="500">500</button>
+        </div>
+
+        <div class="selector-tradeoff" aria-label="Panel-size trade-off">
+          <span><strong>Smaller N</strong> lower compute, coarser structural coverage</span>
+          <span aria-hidden="true">→</span>
+          <span><strong>Larger N</strong> higher compute, denser structural coverage</span>
         </div>
 
         <button id="buildButton" class="build-button" type="button">
@@ -132,7 +141,7 @@
         </p>
       </section>
 
-      <div class="foundation" aria-label="Project Finch foundation universe">
+      <div class="foundation" aria-label="BacSelect development foundation universe">
         <div>
           <strong id="foundationGenomes">55,306</strong>
           <span>eligible complete genomes</span>
@@ -143,37 +152,209 @@
         </div>
         <div>
           <strong id="foundationFeatures">12</strong>
-          <span>structural dimensions</span>
+          <span>candidate architecture features</span>
         </div>
       </div>
-      <p class="foundation-note">Foundation figures are from the frozen Project Finch source-genome analysis that motivated BacSelect. BacSelect's first independent release will have its own versioned source universe.</p>
+      <p class="foundation-note">These figures describe the frozen development universe used to design and validate BacSelect. They are not a BacSelect release. The first public release will have its own independently versioned source universe.</p>
     </section>
 
-    <section id="how" class="section shell">
-      <div class="section-intro">
-        <span class="eyebrow">The idea</span>
-        <h2>Choose the scale.<br>BacSelect does the selection.</h2>
-        <p>Benchmarking a tool should not require weeks of manually deciding which bacterial genomes to include. BacSelect turns that selection problem into a reproducible resource.</p>
+    <section id="why" class="section shell why-section">
+      <div class="why-layout">
+        <div class="section-intro-copy">
+          <span class="eyebrow">Why BacSelect?</span>
+          <h2>The hard part is not finding genomes.<br>It is deciding which ones to keep.</h2>
+          <p>Public archives contain tens of thousands of complete bacterial genomes. Most benchmarking and method-development projects can analyse only a fraction of them. The subset you choose changes what your method is tested against.</p>
+          <p>BacSelect turns that choice into an explicit, deterministic and versioned step.</p>
+        </div>
+
+        <figure class="science-figure universe-panel-figure">
+          <img
+            src="assets/universe-to-panel.svg"
+            alt="A large uneven public genome universe is transformed into species-balanced architecture space and then reduced to a compact BacSelect panel."
+          >
+          <figcaption>Schematic only. Genome positions are illustrative, not validation data.</figcaption>
+        </figure>
       </div>
 
-      <div class="steps-grid">
+      <div class="problem-grid">
         <article>
-          <span class="step-number">01</span>
-          <h3>Choose your scale</h3>
-          <p>Pick a tractable panel size for your compute budget or analysis. The same release and N always return the same panel.</p>
+          <span class="problem-label">Hand-picked</span>
+          <h3>Selection can become subjective</h3>
+          <p>Without explicit rules, a benchmark can depend on which organisms happen to be familiar, interesting or convenient.</p>
         </article>
+
         <article>
-          <span class="step-number">02</span>
-          <h3>Span genome architecture</h3>
-          <p>Selection is driven by sequence-derived structural features rather than species popularity, pathogen status or biological importance.</p>
+          <span class="problem-label">Archive abundance</span>
+          <h3>More deposits should not mean more influence</h3>
+          <p>Species represented by thousands of assemblies should not dominate the selection geometry simply because they have been sequenced more often.</p>
         </article>
-        <article>
-          <span class="step-number">03</span>
-          <h3>Download and reproduce</h3>
-          <p>Every released panel will carry accessions, structural features, selection provenance, checksums and an immutable release identifier.</p>
+
+        <article class="problem-featured">
+          <span class="problem-label">BacSelect</span>
+          <h3>Make genome selection reproducible</h3>
+          <p>For a fixed release, selector version and N, the same validated inputs return the same ordered panel.</p>
         </article>
       </div>
     </section>
+
+
+    <section id="scale" class="section scale-section">
+      <div class="shell">
+        <div class="scale-heading">
+          <div>
+            <span class="eyebrow">Choose N</span>
+            <h2>Different scales.<br>Different trade-offs.</h2>
+          </div>
+          <div class="scale-heading-copy">
+            <p>N does not change the kind of genome architecture BacSelect seeks. It changes how densely the same release universe is sampled.</p>
+            <p>Smaller panels reduce downstream compute. Larger panels provide denser structural representation, at greater computational cost.</p>
+          </div>
+        </div>
+
+        <figure class="science-figure nested-panel-figure">
+          <img
+            src="assets/nested-panels.svg"
+            alt="Illustration of the intended nested BacSelect panel design from N equals 10 through N equals 500, where earlier selections remain present as N increases."
+          >
+          <figcaption>Within one release, supported panels are intended to be prefixes of the same ordered diversity ladder.</figcaption>
+        </figure>
+
+        <div class="use-scale-heading">
+          <span class="eyebrow">What changes as N grows?</span>
+          <p>These are practical compute–resolution trade-offs, not biological categories or claims that a particular N is correct for a particular study.</p>
+        </div>
+
+        <div class="use-scale-grid">
+          <article>
+            <strong>10–20</strong>
+            <span>Very compact</span>
+            <p>For expensive workflows, rapid checks, or situations where downstream compute and manual review are strongly limiting.</p>
+          </article>
+
+          <article>
+            <strong>50–100</strong>
+            <span>Middle scale</span>
+            <p>A practical balance between tractability and denser sampling of the release's genome-architecture space.</p>
+          </article>
+
+          <article>
+            <strong>200–500</strong>
+            <span>Broad</span>
+            <p>For analyses that can absorb more compute in exchange for denser structural representation across the defined release universe.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="coverage" class="section coverage-section">
+      <div class="shell">
+        <div class="coverage-layout">
+          <div class="coverage-copy">
+            <span class="eyebrow">How densely does N sample the universe?</span>
+            <h2>Measure structural distance,<br>not an arbitrary percentage.</h2>
+            <p>BacSelect will quantify structural representation directly within each defined release universe.</p>
+            <p>For every eligible genome, the distance to its nearest selected panel genome is measured in the validated architecture space. Release summaries use species-balanced weighting so heavily represented species do not dominate the reported distribution. Smaller distances mean denser structural representation.</p>
+
+            <div class="coverage-metrics">
+              <div>
+                <span>Median</span>
+                <strong>Typical distance</strong>
+              </div>
+              <div>
+                <span>95th percentile</span>
+                <strong>Upper-tail distance</strong>
+              </div>
+              <div>
+                <span>Maximum</span>
+                <strong>Worst-case distance</strong>
+              </div>
+            </div>
+          </div>
+
+          <figure class="science-figure nearest-distance-figure">
+            <img
+              src="assets/nearest-distance.svg"
+              alt="Genome points connected to their nearest selected panel genome, illustrating nearest-panel structural distance."
+            >
+            <figcaption>Conceptual illustration of the coverage metric. Point locations are not measured BacSelect results.</figcaption>
+          </figure>
+        </div>
+
+        <div class="coverage-release-preview">
+          <div class="coverage-release-top">
+            <div>
+              <span class="eyebrow">Release metrics</span>
+              <strong>Reported for every supported N after validation.</strong>
+            </div>
+            <span class="pending-badge">Pending selector v1</span>
+          </div>
+
+          <div class="coverage-n-preview" aria-label="Planned BacSelect panel sizes">
+            <span>10</span>
+            <span>20</span>
+            <span>50</span>
+            <span>100</span>
+            <span>200</span>
+            <span>500</span>
+          </div>
+
+            <p class="coverage-preview-note">
+              Species-balanced median and 95th-percentile nearest-panel distances,
+              plus the maximum across eligible genomes, will be published with each
+              validated release.
+            </p>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="universe" class="section shell universe-section">
+      <div class="universe-heading">
+        <div>
+          <span class="eyebrow">The defined universe</span>
+          <h2>Public data in.<br>Biases still exist.</h2>
+        </div>
+
+        <div class="universe-heading-copy">
+          <p>BacSelect v1 is being designed around eligible complete bacterial genome assemblies in the <strong>INSDC / GenBank assembly archive</strong>, retrieved reproducibly through <strong>NCBI Datasets</strong>.</p>
+          <p>NCBI Datasets is the retrieval interface. It is not a claim that NCBI is the only bacterial genome resource. Other genome collections exist and are not automatically incorporated into the BacSelect v1 universe.</p>
+        </div>
+      </div>
+
+      <div class="universe-path">
+        <div>
+          <span>01</span>
+          <strong>Sampled</strong>
+        </div>
+        <i aria-hidden="true">→</i>
+        <div>
+          <span>02</span>
+          <strong>Sequenced</strong>
+        </div>
+        <i aria-hidden="true">→</i>
+        <div>
+          <span>03</span>
+          <strong>Completed</strong>
+        </div>
+        <i aria-hidden="true">→</i>
+        <div>
+          <span>04</span>
+          <strong>Deposited</strong>
+        </div>
+        <i aria-hidden="true">→</i>
+        <div>
+          <span>05</span>
+          <strong>Eligible</strong>
+        </div>
+      </div>
+
+      <div class="universe-boundary">
+        <span class="eyebrow">Important boundary</span>
+        <p>BacSelect does not represent all bacterial life. Its source universe reflects what has been sampled, sequenced, assembled to completion, deposited and classified. BacSelect can reduce arbitrary selection within that defined universe; it cannot remove biases already present in the underlying data.</p>
+      </div>
+    </section>
+
 
     <section id="method" class="section method-section">
       <div class="shell">
@@ -215,24 +396,6 @@
           </article>
         </div>
 
-        <div class="method-boundary">
-          <span class="eyebrow">What BacSelect does not claim</span>
-          <p>BacSelect does not represent all bacterial life. Its source universe reflects what has been sampled, sequenced, assembled to completion and deposited in the public archive. BacSelect reduces arbitrary selection within that defined universe; it cannot remove biases already present in the underlying data.</p>
-        </div>
-
-        <div class="method-tooling">
-          <span class="eyebrow">Methods &amp; tooling</span>
-          <p>Public complete bacterial assemblies are sourced from <strong>INSDC/GenBank</strong> through <strong>NCBI Datasets</strong>. BacSelect selection and validation are implemented in <strong>Python</strong> using <strong>NumPy</strong> and <strong>SciPy</strong>. The current development foundation uses structural features generated for <strong>Project Finch</strong>. Exact software versions, environments and checksums are recorded in the scientific repository.</p>
-        </div>
-
-        <div class="validation-strip">
-          <div>
-            <span class="eyebrow">Validation</span>
-            <strong>Prospective. Identity-blinded. Still in progress.</strong>
-          </div>
-          <p>Single-feature and grouped feature-family sensitivity analyses are complete, with genome and species identities still blinded.</p>
-          <a href="#validation">Validation status <span aria-hidden="true">→</span></a>
-        </div>
       </div>
     </section>
 
@@ -252,65 +415,50 @@
         </div>
       </div>
 
-      <div class="validation-progress-grid" aria-label="BacSelect validation progress">
-        <article class="validation-stage complete">
-          <div class="validation-stage-top">
-            <span class="validation-stage-number">01</span>
-            <span class="validation-stage-status">Complete</span>
-          </div>
-          <h3>Candidate comparison</h3>
-          <p>The candidate selectors have been compared across all six planned panel sizes. The selector decision remains open.</p>
+      <div
+        class="validation-roadmap"
+        aria-label="BacSelect validation progress"
+      >
+        <article class="validation-node complete">
+          <span>01</span>
+          <strong>Candidate comparison</strong>
+          <small>Complete</small>
         </article>
 
-        <article class="validation-stage complete">
-          <div class="validation-stage-top">
-            <span class="validation-stage-number">02</span>
-            <span class="validation-stage-status">Complete</span>
-          </div>
-          <h3>Random baseline</h3>
-          <p>Structural coverage has been benchmarked against 1,000 species-balanced random panels.</p>
+        <article class="validation-node complete">
+          <span>02</span>
+          <strong>Random baseline</strong>
+          <small>Complete</small>
         </article>
 
-        <article class="validation-stage complete">
-          <div class="validation-stage-top">
-            <span class="validation-stage-number">03</span>
-            <span class="validation-stage-status">Complete</span>
-          </div>
-          <h3>Species representation</h3>
-          <p>Selection has been checked for repeated representation of the same species as panel size increases.</p>
+        <article class="validation-node complete">
+          <span>03</span>
+          <strong>Species representation</strong>
+          <small>Complete</small>
         </article>
 
-        <article class="validation-stage complete">
-          <div class="validation-stage-top">
-            <span class="validation-stage-number">04</span>
-            <span class="validation-stage-status">Complete</span>
-          </div>
-          <h3>Feature correlation</h3>
-          <p>Rank associations among all 12 structural dimensions have been mapped before feature sensitivity testing.</p>
+        <article class="validation-node complete">
+          <span>04</span>
+          <strong>Feature correlation</strong>
+          <small>Complete</small>
         </article>
 
-        <article class="validation-stage complete">
-          <div class="validation-stage-top">
-            <span class="validation-stage-number">05</span>
-            <span class="validation-stage-status">Complete</span>
-          </div>
-          <h3>Feature sensitivity</h3>
-          <p>Leave-one-feature-out and grouped feature-family analyses are complete. No feature family was removed from the base-12 schema.</p>
+        <article class="validation-node complete">
+          <span>05</span>
+          <strong>Feature sensitivity</strong>
+          <small>Complete</small>
         </article>
 
-        <article class="validation-stage pending">
-          <div class="validation-stage-top">
-            <span class="validation-stage-number">06</span>
-            <span class="validation-stage-status">Pending</span>
-          </div>
-          <h3>Remaining validation</h3>
-          <p>Repeat-scale testing, input-order invariance, deterministic rebuild and update-stability analyses remain before selector v1 and the structural-feature schema are frozen.</p>
+        <article class="validation-node current">
+          <span>06</span>
+          <strong>Remaining validation</strong>
+          <small>In progress</small>
         </article>
       </div>
 
       <div class="validation-summary">
         <strong>Selector decision remains open.</strong>
-        <p>No genome or species identities are exposed during selector validation. BacSelect will not serve public panels until the remaining validation is complete.</p>
+        <p>Repeat-scale testing, input-order invariance, deterministic rebuild and update-stability analyses remain before selector v1 is frozen.</p>
         <a href="https://github.com/BacSelect/bacselect">Follow the validation <span aria-hidden="true">→</span></a>
       </div>
     </section>
@@ -363,21 +511,93 @@
           </div>
         </div>
 
+        <div class="release-change">
+          <div class="release-change-copy">
+            <span class="eyebrow">What changed this month?</span>
+            <h3>A release should explain its differences, not just change its date.</h3>
+            <p>Each monthly release is intended to report genomes entering and leaving the eligible universe, species-group changes, panel turnover at each supported N, and changes in structural-distance metrics.</p>
+          </div>
+
+          <figure class="science-figure release-change-figure">
+            <img
+              src="assets/release-change.svg"
+              alt="A schematic comparison of previous and current BacSelect releases showing genome and panel changes."
+            >
+            <figcaption>Release comparison graphic. No public BacSelect release exists yet.</figcaption>
+          </figure>
+        </div>
+
         <div class="release-history">
           <div>
             <span class="eyebrow">Release history</span>
             <strong>No BacSelect release has been published yet.</strong>
           </div>
-          <p>The current figures on this site describe the frozen Project Finch foundation used to develop and validate BacSelect. They are not a BacSelect release.</p>
+          <p>The current figures on this site describe the frozen development foundation used to design and validate BacSelect. They are not a BacSelect release.</p>
         </div>
       </div>
     </section>
 
-    <section class="section shell origin-section">
+    <section id="cite" class="section shell cite-section">
+      <div class="cite-layout">
+        <div>
+          <span class="eyebrow">Use BacSelect in a paper</span>
+          <h2>Reproducible selection should be easy to report.</h2>
+          <p>For most studies, BacSelect belongs in the <strong>Methods</strong> because it defines how the genome set was selected. Results need only discuss BacSelect when the composition or structural coverage of the selected panel is itself being analysed.</p>
+        </div>
+
+        <div class="methods-card">
+          <span class="eyebrow">Methods template</span>
+          <p>Complete bacterial genomes were selected using BacSelect release <strong>YYYY.MM</strong> (selector <strong>vX.Y.Z</strong>, architecture schema <strong>vX</strong>, N=<strong>N</strong>).</p>
+
+          <div class="citation-actions">
+            <button type="button" disabled>BibTeX</button>
+            <button type="button" disabled>RIS / EndNote</button>
+            <button type="button" disabled>CSL-JSON</button>
+            <button type="button" disabled>Copy Methods</button>
+          </div>
+
+          <small>Citation downloads will activate with the first validated release.</small>
+        </div>
+      </div>
+
+      <div class="free-strip">
+        <strong>Free to use.</strong>
+        <p>Core BacSelect panel selection, metadata, citation tools and release history will remain freely accessible.</p>
+      </div>
+    </section>
+
+
+    <section id="about" class="section shell origin-section">
       <div class="origin-card">
-        <span class="eyebrow">Where this came from</span>
+        <span class="eyebrow">About BacSelect</span>
         <blockquote>“We need a manageable set of bacterial genomes. Which ones?”</blockquote>
-        <p>BacSelect grew out of the source-genome selection problem in Project Finch, where more than 55,000 complete bacterial assemblies had to be reduced to a small benchmark panel before assembler performance was observed.</p>
+        <p>BacSelect grew from a practical benchmarking problem: more than 55,000 eligible complete bacterial genomes were available, but only a small number could be analysed realistically. Choosing that subset by hand would make the benchmark depend on subjective choices. BacSelect was developed to make that selection reproducible, explicit and measurable.</p>
+
+        <div class="project-meta-grid">
+          <div>
+            <span>Developed by</span>
+            <strong>Rhys White</strong>
+            <small>Genomics &amp; Bioinformatics · PHF Science · Aotearoa New Zealand</small>
+          </div>
+
+          <div>
+            <span>Research support</span>
+            <strong>Genomics Aotearoa</strong>
+            <small>BacSelect originated from a research problem explored with support from Genomics Aotearoa.</small>
+          </div>
+
+          <div>
+            <span>Access</span>
+            <strong>Free to use</strong>
+            <small>Core panel selection, metadata, citation tools and release history will remain freely accessible.</small>
+          </div>
+
+          <div>
+            <span>Licence</span>
+            <strong>MIT</strong>
+            <small>BacSelect-authored code and website content are released under the MIT License. Third-party genome records retain their upstream terms.</small>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -390,9 +610,13 @@
     <div class="footer-meta">
       <span>Development preview</span>
       <a
+        href="https://github.com/BacSelect/bacselect"
+      >Scientific repository</a>
+      <a
         id="websiteRepoLink"
         href="https://github.com/BacSelect/bacselect.github.io"
-      >Source</a>
+      >Website source</a>
+      <a href="LICENSE">MIT License</a>
     </div>
   </footer>
 

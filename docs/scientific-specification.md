@@ -78,9 +78,10 @@ sources could enter the selection universe.
 
 ## Release model
 
-BacSelect is refreshed monthly.
+BacSelect is designed for monthly releases.
 
-A new source snapshot is initiated on the first day of each calendar month.
+Once public releases begin, a new source snapshot is initiated on the first day
+of each calendar month.
 
 The release identifier is:
 
@@ -256,9 +257,9 @@ numerically as selection scores.
 
 ## Candidate structural feature schema
 
-The first BacSelect candidate architecture schema inherits the 12
-sequence-derived structural features developed and validated for Project
-Finch:
+The first BacSelect candidate architecture schema begins from 12
+sequence-derived structural features established in the frozen development
+foundation:
 
 1. total genome length;
 2. whole-genome GC fraction;
@@ -278,9 +279,9 @@ Canonical k-mers treat a sequence and its reverse complement as equivalent.
 Circular replicons are processed topology-aware across the recorded FASTA
 origin.
 
-The 150-bp and 400-bp repeat scales were originally chosen for Project Finch
-because they correspond to the frozen PE150 read length and approximate
-paired-fragment scale used in that benchmark.
+The initial 150-bp and 400-bp repeat scales originated in an earlier
+short-read benchmarking design, where they reflected the PE150 read length and
+approximate paired-fragment scale being evaluated.
 
 They are therefore not automatically assumed to be the final general-purpose
 BacSelect repeat scales.
@@ -306,7 +307,7 @@ Feature results are cached against immutable sequence and assembly provenance.
 
 A new or sequence-revised assembly requires feature computation.
 
-Taxonomy, eligibility, percentile coordinates, species representatives, and
+Taxonomy, eligibility, percentile coordinates, selector candidate state, and
 the final ranking are rebuilt for every monthly release.
 
 ## Species-balanced percentile geometry
@@ -408,7 +409,8 @@ importance, and downstream benchmark behaviour are not ranking variables.
 
 ## Nested panel property
 
-The complete diversity ladder is generated once per monthly release.
+Whichever species-representation design is frozen for selector v1, the selector
+generates one deterministic complete diversity ladder per monthly release.
 
 A BacSelect panel of size N is exactly the first N rows of that ladder.
 
@@ -435,8 +437,8 @@ The initial BacSelect website exposes:
 
 plus custom integer N from 10 through 500.
 
-The production ranking itself is not limited to 500 and should rank every
-eligible species representative.
+The production ranking itself is not limited to 500 and should rank the
+complete selector-defined candidate set.
 
 The public maximum may be increased in a later interface release without
 changing the selector.
@@ -445,21 +447,26 @@ changing the selector.
 
 BacSelect does not assign an arbitrary percentage called `coverage`.
 
-For a panel of size N, calculate the distance from every eligible species
-representative to its nearest selected panel genome.
+For a panel of size N, calculate the distance from every eligible genome in the
+defined evaluation universe to its nearest selected panel genome.
+
+Distribution summaries must control species abundance using the same per-genome
+species weights defined for the species-balanced percentile geometry. A species
+with many deposited genomes must not contribute more total weight to the median
+or 95th-percentile summary merely because it has been sequenced more often.
 
 Report at minimum:
 
-- median nearest-panel distance;
-- 95th-percentile nearest-panel distance;
-- maximum nearest-panel distance.
+- species-balanced median nearest-panel distance;
+- species-balanced 95th-percentile nearest-panel distance;
+- maximum nearest-panel distance across all eligible genomes.
 
 Comparisons between panel sizes may report the relative reduction in these
 distances.
 
 Monthly release comparisons must evaluate old and new panels against the same
-comparison universe before attributing a change to improved structural
-coverage.
+comparison universe and frozen architecture-space definition before attributing
+a change to improved structural coverage.
 
 ## Required release artefacts
 
@@ -475,7 +482,8 @@ Required release artefacts include:
 - species-resolution table;
 - raw structural-feature table;
 - species-balanced percentile matrix;
-- species-representative table;
+- selector-candidate table, including species-representative assignments when
+  applicable;
 - complete diversity ladder;
 - selector trace;
 - release summary;
@@ -517,7 +525,7 @@ has tested at least:
 - deterministic byte-identical rebuilds;
 - invariance to input row permutation apart from defined exact ties;
 - exact nestedness for all exposed N;
-- exactly one selected genome per species;
+- correct enforcement of the frozen species-representation rule;
 - exclusion of species names and biological-priority fields from selection;
 - species-abundance balancing;
 - repeat-scale, feature-scale, and feature-ablation sensitivity;
@@ -529,22 +537,19 @@ has tested at least:
 - structural-distance behaviour as N increases;
 - stability under historical or simulated monthly source updates;
 - behaviour when accessions are added, replaced, or suppressed;
-- comparison with the frozen Project Finch 40-genome panel at N=40.
+- comparison with the earlier frozen 40-genome benchmark panel at N=40.
 
 The validation design must be frozen before BacSelect panel identities are
 examined.
 
-## Relationship to Project Finch
+## Historical benchmark boundary
 
-Project Finch motivated BacSelect but remains scientifically separate.
+An earlier frozen 40-genome / 25-species benchmark panel remains scientifically
+separate from BacSelect and is not regenerated or replaced.
 
-The frozen Project Finch Experiment 0 panel is not regenerated or replaced.
+That panel answered a benchmark-specific selection problem that included
+deliberate within-species structural sampling. It may be retained as an
+external historical comparison during BacSelect validation.
 
-Its 40-genome / 25-species design answered a benchmark-specific question that
-included deliberate within-species structural sampling.
-
-BacSelect v1 instead constructs a general species-balanced diversity ladder
-with one representative genome per species.
-
-Project Finch may use or compare with future BacSelect releases, but BacSelect
-does not depend on Project Finch benchmark outcomes.
+BacSelect selection and validation do not depend on downstream benchmark
+performance observed for that panel.
