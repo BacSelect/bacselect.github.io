@@ -10,10 +10,15 @@
   <meta property="og:description" content="Bacterial genome diversity, at the scale you need.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://bacselect.github.io/">
+  <meta property="og:site_name" content="BacSelect">
+  <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://bacselect.github.io/">
   <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
   <header class="site-header">
     <a class="brand" href="#top" aria-label="BacSelect home">
       <img src="assets/mark.svg" alt="" width="30" height="30">
@@ -32,14 +37,15 @@
     </nav>
   </header>
 
-  <main id="top">
+  <main id="main-content">
+    <div id="top"></div>
     <section class="hero shell">
       <div class="status-pill">
         <span class="status-dot" aria-hidden="true"></span>
         <span id="statusLabel">Development preview</span>
       </div>
       <h1>Bacterial genome diversity,<br><em>at the scale you need.</em></h1>
-      <p class="hero-copy">Choose how many bacterial genomes you need. BacSelect will return a reproducible panel designed to span genome architecture across the available complete-genome collection.</p>
+      <p class="hero-copy">Choose how many bacterial genomes you need. BacSelect will return a reproducible panel designed to span genome architecture across a defined public complete-genome collection.</p>
 
       <div id="explore" class="selector-card" aria-labelledby="selector-title">
         <div class="selector-heading">
@@ -69,6 +75,9 @@
           <span aria-hidden="true">→</span>
         </button>
         <p id="buildNote" class="build-note" role="status">Panel generation will activate with the first validated BacSelect release.</p>
+        <noscript>
+          <p class="noscript-note">JavaScript is required for the interactive panel-size control. No public BacSelect panel is currently released.</p>
+        </noscript>
       </div>
 
       <section
@@ -221,7 +230,7 @@
             <span class="eyebrow">Validation</span>
             <strong>Prospective. Identity-blinded. Still in progress.</strong>
           </div>
-          <p>Core selector comparisons and diagnostics are frozen. Feature sensitivity analysis is now underway, with genome and species identities still blinded.</p>
+          <p>Single-feature sensitivity analysis is complete. Grouped feature-family ablation is now underway, with genome and species identities still blinded.</p>
           <a href="#validation">Validation status <span aria-hidden="true">→</span></a>
         </div>
       </div>
@@ -237,7 +246,7 @@
         <div class="validation-heading-copy">
           <div class="validation-state">
             <span class="validation-state-dot" aria-hidden="true"></span>
-            <span>Feature sensitivity analysis in progress</span>
+            <span>Grouped feature-family ablation in progress</span>
           </div>
           <p>BacSelect follows a pre-specified, identity-blinded validation plan. Public panels remain unavailable until the selector and structural-feature schema are frozen.</p>
         </div>
@@ -286,7 +295,7 @@
             <span class="validation-stage-status">In progress</span>
           </div>
           <h3>Feature sensitivity</h3>
-          <p>Each structural dimension is being removed in turn, followed by grouped feature-ablation analyses.</p>
+          <p>Leave-one-feature-out analysis is complete. Pre-specified feature families are now being removed together to test dependence on related dimensions.</p>
         </article>
 
         <article class="validation-stage pending">
@@ -294,8 +303,8 @@
             <span class="validation-stage-number">06</span>
             <span class="validation-stage-status">Pending</span>
           </div>
-          <h3>Repeat-scale validation</h3>
-          <p>Repeat-length choices will be tested prospectively before the structural-feature schema is frozen.</p>
+          <h3>Remaining validation</h3>
+          <p>Repeat-scale testing, input-order invariance, deterministic rebuild and update-stability analyses remain before selector v1 and the structural-feature schema are frozen.</p>
         </article>
       </div>
 

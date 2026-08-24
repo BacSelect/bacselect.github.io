@@ -8,7 +8,7 @@ This repository hosts the BacSelect website at <https://bacselect.github.io/>.
 
 ## Current status
 
-The site is an intentionally labelled development preview. The interface and deployment scaffold are ready; the general N-selector and first independent BacSelect source universe have not yet been frozen or released.
+The site is intentionally labelled as a development preview. The public interface is deployed, while selector-v1 validation is still in progress. No BacSelect panel or independent BacSelect source-universe release has yet been published.
 
 The initial design grew from Project Finch Experiment 0, whose frozen source analysis contained:
 
@@ -47,4 +47,4 @@ The `pages.yml` workflow deploys the repository root to GitHub Pages on pushes t
 
 ## Scientific boundary
 
-BacSelect is intended to provide identity-blind, deterministic, diversity-seeking selection across bacterial genome architecture. It is not described as an unbiased sample of bacterial life, and no public panel should be produced until the general N-selection specification and validation criteria are frozen.
+BacSelect is intended to provide identity-blind, deterministic, diversity-seeking selection across bacterial genome architecture. It is not described as an unbiased sample of bacterial life. Public panels remain unavailable while the selector and structural-feature schema are under prospective validation.
