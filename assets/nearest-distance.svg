@@ -1,108 +1,474 @@
 <svg
   xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 1200 650"
+  viewBox="0 0 1260 650"
   role="img"
   aria-labelledby="title desc"
 >
-  <title id="title">Nearest-panel structural distance</title>
+  <title id="title">Nearest-panel distance</title>
   <desc id="desc">
-    Genome points in architecture space are connected to their nearest
-    selected BacSelect panel genome. Shorter distances indicate denser
-    structural representation within the defined source universe.
+    Eligible genomes are connected to their nearest selected BacSelect
+    panel genome. Shorter distances indicate denser representation.
   </desc>
 
-  <g stroke="#454b49" stroke-width="1.5" fill="none">
-    <path d="M85 535 L1110 535"/>
-    <path d="M85 535 L85 95"/>
-  </g>
+  <defs>
+    <style>
+      .primary {
+        fill: #f7f5ee;
+        font-family: Inter, "Segoe UI", sans-serif;
+      }
 
-  <g fill="#7f8683" opacity=".65">
-    <circle cx="155" cy="456" r="7"/>
-    <circle cx="201" cy="420" r="7"/>
-    <circle cx="245" cy="468" r="7"/>
-    <circle cx="298" cy="382" r="7"/>
-    <circle cx="343" cy="430" r="7"/>
-    <circle cx="390" cy="354" r="7"/>
-    <circle cx="438" cy="405" r="7"/>
-    <circle cx="490" cy="319" r="7"/>
-    <circle cx="545" cy="362" r="7"/>
-    <circle cx="594" cy="281" r="7"/>
-    <circle cx="648" cy="328" r="7"/>
-    <circle cx="695" cy="245" r="7"/>
-    <circle cx="742" cy="292" r="7"/>
-    <circle cx="796" cy="208" r="7"/>
-    <circle cx="846" cy="264" r="7"/>
-    <circle cx="905" cy="180" r="7"/>
-    <circle cx="959" cy="235" r="7"/>
-    <circle cx="1023" cy="142" r="7"/>
-    <circle cx="1068" cy="196" r="7"/>
-  </g>
+      .secondary {
+        fill: #aeb5b3;
+        font-family: Inter, "Segoe UI", sans-serif;
+      }
 
-  <g
+      .eligible {
+        fill: #7f8683;
+        opacity: .65;
+      }
+
+      .selected {
+        fill: #5b5cf0;
+      }
+
+      .distance {
+        fill: none;
+        stroke: #8d8df8;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        opacity: .9;
+      }
+    </style>
+
+    <!--
+      Prevent distance lines from showing through genome dots.
+      The lines remain behind the points even though eligible
+      genomes are semi-transparent.
+    -->
+    <mask
+      id="hide-lines-under-genomes"
+      maskUnits="userSpaceOnUse"
+      maskContentUnits="userSpaceOnUse"
+      x="0"
+      y="0"
+      width="1260"
+      height="650"
+      style="mask-type:luminance"
+    >
+      <rect x="0" y="0" width="1260" height="650" fill="white"/>
+
+      <g fill="black">
+
+        <!-- Cluster 1 -->
+        <circle cx="646" cy="105" r="8.5"/>
+        <circle cx="674" cy="72"  r="8.5"/>
+        <circle cx="754" cy="78"  r="8.5"/>
+        <circle cx="770" cy="132" r="8.5"/>
+        <circle cx="756" cy="184" r="8.5"/>
+        <circle cx="704" cy="143" r="11.5"/>
+
+        <!-- Cluster 2 -->
+        <circle cx="548" cy="305" r="8.5"/>
+        <circle cx="640" cy="242" r="8.5"/>
+        <circle cx="661" cy="351" r="8.5"/>
+        <circle cx="578" cy="366" r="8.5"/>
+        <circle cx="610" cy="306" r="11.5"/>
+
+        <!-- Cluster 3 -->
+        <circle cx="867" cy="190" r="8.5"/>
+        <circle cx="870" cy="286" r="8.5"/>
+        <circle cx="959" cy="194" r="8.5"/>
+        <circle cx="919" cy="240" r="11.5"/>
+
+        <!-- Cluster 4 -->
+        <circle cx="1160" cy="127" r="8.5"/>
+        <circle cx="1170" cy="205" r="8.5"/>
+        <circle cx="1110" cy="176" r="11.5"/>
+
+        <!-- Cluster 5 -->
+        <circle cx="655" cy="494" r="8.5"/>
+        <circle cx="673" cy="549" r="8.5"/>
+        <circle cx="744" cy="565" r="8.5"/>
+        <circle cx="803" cy="524" r="8.5"/>
+        <circle cx="716" cy="503" r="11.5"/>
+
+        <!-- Cluster 6 -->
+        <circle cx="1017" cy="441" r="8.5"/>
+        <circle cx="1038" cy="556" r="8.5"/>
+        <circle cx="1088" cy="574" r="8.5"/>
+        <circle cx="1148" cy="552" r="8.5"/>
+        <circle cx="1172" cy="459" r="8.5"/>
+        <circle cx="1119" cy="430" r="8.5"/>
+        <circle cx="1076" cy="500" r="11.5"/>
+
+        <!-- Remaining eligible-genome cloud -->
+        <circle cx="807" cy="69"  r="8.5"/>
+        <circle cx="842" cy="88"  r="8.5"/>
+        <circle cx="879" cy="67"  r="8.5"/>
+        <circle cx="909" cy="88"  r="8.5"/>
+        <circle cx="968" cy="86"  r="8.5"/>
+        <circle cx="1021" cy="109" r="8.5"/>
+
+        <circle cx="824" cy="123" r="8.5"/>
+        <circle cx="846" cy="160" r="8.5"/>
+        <circle cx="894" cy="139" r="8.5"/>
+        <circle cx="946" cy="139" r="8.5"/>
+        <circle cx="998" cy="151" r="8.5"/>
+        <circle cx="1046" cy="157" r="8.5"/>
+
+        <circle cx="596" cy="183" r="8.5"/>
+        <circle cx="626" cy="207" r="8.5"/>
+        <circle cx="694" cy="205" r="8.5"/>
+        <circle cx="794" cy="208" r="8.5"/>
+        <circle cx="824" cy="237" r="8.5"/>
+        <circle cx="976" cy="241" r="8.5"/>
+        <circle cx="1027" cy="219" r="8.5"/>
+        <circle cx="1066" cy="252" r="8.5"/>
+        <circle cx="1148" cy="259" r="8.5"/>
+        <circle cx="1204" cy="251" r="8.5"/>
+
+        <circle cx="694" cy="282" r="8.5"/>
+        <circle cx="742" cy="276" r="8.5"/>
+        <circle cx="792" cy="300" r="8.5"/>
+        <circle cx="827" cy="328" r="8.5"/>
+        <circle cx="879" cy="338" r="8.5"/>
+        <circle cx="963" cy="319" r="8.5"/>
+        <circle cx="1006" cy="286" r="8.5"/>
+        <circle cx="1046" cy="326" r="8.5"/>
+        <circle cx="1098" cy="310" r="8.5"/>
+        <circle cx="1157" cy="329" r="8.5"/>
+
+        <circle cx="531" cy="410" r="8.5"/>
+        <circle cx="579" cy="427" r="8.5"/>
+        <circle cx="634" cy="408" r="8.5"/>
+        <circle cx="684" cy="425" r="8.5"/>
+        <circle cx="742" cy="399" r="8.5"/>
+        <circle cx="790" cy="422" r="8.5"/>
+        <circle cx="838" cy="389" r="8.5"/>
+        <circle cx="883" cy="414" r="8.5"/>
+        <circle cx="935" cy="385" r="8.5"/>
+        <circle cx="979" cy="404" r="8.5"/>
+        <circle cx="1053" cy="380" r="8.5"/>
+        <circle cx="1158" cy="390" r="8.5"/>
+        <circle cx="1211" cy="410" r="8.5"/>
+
+        <circle cx="560" cy="485" r="8.5"/>
+        <circle cx="608" cy="461" r="8.5"/>
+        <circle cx="768" cy="464" r="8.5"/>
+        <circle cx="835" cy="477" r="8.5"/>
+        <circle cx="884" cy="450" r="8.5"/>
+        <circle cx="931" cy="478" r="8.5"/>
+        <circle cx="985" cy="512" r="8.5"/>
+        <circle cx="1210" cy="506" r="8.5"/>
+
+        <circle cx="590" cy="543" r="8.5"/>
+        <circle cx="629" cy="577" r="8.5"/>
+        <circle cx="824" cy="569" r="8.5"/>
+        <circle cx="864" cy="533" r="8.5"/>
+        <circle cx="903" cy="568" r="8.5"/>
+        <circle cx="956" cy="548" r="8.5"/>
+        <circle cx="995" cy="590" r="8.5"/>
+        <circle cx="1195" cy="577" r="8.5"/>
+
+      </g>
+    </mask>
+  </defs>
+
+
+  <!-- =========================================================
+       LEFT: explanation
+       ========================================================= -->
+
+  <text
+    x="45"
+    y="72"
+    class="primary"
+    font-size="40"
+    font-weight="700"
+  >
+    Nearest-panel
+    <tspan fill="#8d8df8"> distance</tspan>
+  </text>
+
+  <text
+    x="45"
+    y="125"
+    class="secondary"
+    font-size="21"
+  >
+    Each eligible genome is measured
+  </text>
+
+  <text
+    x="45"
+    y="156"
+    class="secondary"
+    font-size="21"
+  >
+    against its nearest selected genome.
+  </text>
+
+
+  <!-- Legend -->
+
+  <circle cx="67" cy="238" r="12" class="selected"/>
+
+  <text
+    x="96"
+    y="245"
+    class="primary"
+    font-size="20"
+  >
+    Selected (panel) genome
+  </text>
+
+  <circle cx="67" cy="301" r="12" class="eligible"/>
+
+  <text
+    x="96"
+    y="308"
+    class="primary"
+    font-size="20"
+  >
+    Eligible genome
+  </text>
+
+  <line
+    x1="54"
+    y1="364"
+    x2="80"
+    y2="364"
     stroke="#8d8df8"
-    stroke-width="2"
-    stroke-dasharray="5 5"
-    opacity=".9"
-  >
-    <line x1="155" y1="456" x2="205" y2="437"/>
-    <line x1="245" y1="468" x2="205" y2="437"/>
-    <line x1="298" y1="382" x2="370" y2="370"/>
-    <line x1="438" y1="405" x2="370" y2="370"/>
-    <line x1="490" y1="319" x2="566" y2="312"/>
-    <line x1="648" y1="328" x2="566" y2="312"/>
-    <line x1="695" y1="245" x2="770" y2="239"/>
-    <line x1="846" y1="264" x2="770" y2="239"/>
-    <line x1="905" y1="180" x2="986" y2="185"/>
-    <line x1="1068" y1="196" x2="986" y2="185"/>
-  </g>
+    stroke-width="3"
+    stroke-linecap="round"
+  />
 
-  <g fill="#5b5cf0">
-    <circle cx="205" cy="437" r="12"/>
-    <circle cx="370" cy="370" r="12"/>
-    <circle cx="566" cy="312" r="12"/>
-    <circle cx="770" cy="239" r="12"/>
-    <circle cx="986" cy="185" r="12"/>
-  </g>
+  <text
+    x="96"
+    y="371"
+    class="primary"
+    font-size="20"
+  >
+    Nearest distance
+  </text>
+
+
+  <!-- Callout -->
+
+  <rect
+    x="45"
+    y="432"
+    width="390"
+    height="112"
+    rx="14"
+    fill="none"
+    stroke="#8d8df8"
+    stroke-width="1.8"
+  />
+
+  <!-- Distance line stops at the circle boundaries -->
+  <line
+    x1="93"
+    y1="488"
+    x2="133"
+    y2="488"
+    stroke="#8d8df8"
+    stroke-width="2.5"
+    stroke-linecap="round"
+  />
+
+  <circle cx="83" cy="488" r="10" class="eligible"/>
+  <circle cx="143" cy="488" r="10" class="selected"/>
+
+  <text
+    x="181"
+    y="482"
+    fill="#8d8df8"
+    font-family="Inter, 'Segoe UI', sans-serif"
+    font-size="18"
+    font-weight="700"
+  >
+    shorter distance =
+  </text>
+
+  <text
+    x="181"
+    y="510"
+    class="secondary"
+    font-size="17"
+  >
+    denser representation
+  </text>
+
+
+  <!-- =========================================================
+       RIGHT: genome architecture space
+       ========================================================= -->
+
+
+  <!-- Distance lines: masked so they cannot show through dots -->
 
   <g
-    font-family="Inter,Segoe UI,sans-serif"
+    id="distance-lines"
+    mask="url(#hide-lines-under-genomes)"
   >
-    <text
-      x="113"
-      y="120"
-      fill="#f7f5ee"
-      font-size="19"
-      font-weight="700"
-    >
-      Every eligible genome
-    </text>
 
-    <text
-      x="113"
-      y="146"
-      fill="#aeb5b3"
-      font-size="15"
-    >
-      is measured against its nearest selected panel genome
-    </text>
+    <!-- Upper-left selected genome -->
+    <line x1="704" y1="143" x2="646" y2="105" class="distance"/>
+    <line x1="704" y1="143" x2="674" y2="72"  class="distance"/>
+    <line x1="704" y1="143" x2="754" y2="78"  class="distance"/>
+    <line x1="704" y1="143" x2="770" y2="132" class="distance"/>
+    <line x1="704" y1="143" x2="756" y2="184" class="distance"/>
 
-    <text
-      x="792"
-      y="374"
-      fill="#8d8df8"
-      font-size="15"
-      font-weight="700"
-    >
-      nearest-panel distance
-    </text>
+    <!-- Middle-left selected genome -->
+    <line x1="610" y1="306" x2="548" y2="305" class="distance"/>
+    <line x1="610" y1="306" x2="640" y2="242" class="distance"/>
+    <line x1="610" y1="306" x2="661" y2="351" class="distance"/>
+    <line x1="610" y1="306" x2="578" y2="366" class="distance"/>
 
-    <text
-      x="792"
-      y="399"
-      fill="#aeb5b3"
-      font-size="14"
-    >
-      smaller = denser structural representation
-    </text>
+    <!-- Upper-middle-right selected genome -->
+    <line x1="919" y1="240" x2="867" y2="190" class="distance"/>
+    <line x1="919" y1="240" x2="870" y2="286" class="distance"/>
+    <line x1="919" y1="240" x2="959" y2="194" class="distance"/>
+
+    <!-- Upper-right selected genome -->
+    <line x1="1110" y1="176" x2="1160" y2="127" class="distance"/>
+    <line x1="1110" y1="176" x2="1170" y2="205" class="distance"/>
+
+    <!-- Lower-left selected genome -->
+    <line x1="716" y1="503" x2="655" y2="494" class="distance"/>
+    <line x1="716" y1="503" x2="673" y2="549" class="distance"/>
+    <line x1="716" y1="503" x2="744" y2="565" class="distance"/>
+    <line x1="716" y1="503" x2="803" y2="524" class="distance"/>
+
+    <!-- Lower-right selected genome -->
+    <line x1="1076" y1="500" x2="1017" y2="441" class="distance"/>
+    <line x1="1076" y1="500" x2="1038" y2="556" class="distance"/>
+    <line x1="1076" y1="500" x2="1088" y2="574" class="distance"/>
+    <line x1="1076" y1="500" x2="1148" y2="552" class="distance"/>
+    <line x1="1076" y1="500" x2="1172" y2="459" class="distance"/>
+    <line x1="1076" y1="500" x2="1119" y2="430" class="distance"/>
+
   </g>
+
+
+  <!-- Genome points -->
+
+  <g id="genome-points">
+
+    <!-- Cluster 1 -->
+    <circle cx="646" cy="105" r="8" class="eligible"/>
+    <circle cx="674" cy="72"  r="8" class="eligible"/>
+    <circle cx="754" cy="78"  r="8" class="eligible"/>
+    <circle cx="770" cy="132" r="8" class="eligible"/>
+    <circle cx="756" cy="184" r="8" class="eligible"/>
+    <circle cx="704" cy="143" r="11" class="selected"/>
+
+    <!-- Cluster 2 -->
+    <circle cx="548" cy="305" r="8" class="eligible"/>
+    <circle cx="640" cy="242" r="8" class="eligible"/>
+    <circle cx="661" cy="351" r="8" class="eligible"/>
+    <circle cx="578" cy="366" r="8" class="eligible"/>
+    <circle cx="610" cy="306" r="11" class="selected"/>
+
+    <!-- Cluster 3 -->
+    <circle cx="867" cy="190" r="8" class="eligible"/>
+    <circle cx="870" cy="286" r="8" class="eligible"/>
+    <circle cx="959" cy="194" r="8" class="eligible"/>
+    <circle cx="919" cy="240" r="11" class="selected"/>
+
+    <!-- Cluster 4 -->
+    <circle cx="1160" cy="127" r="8" class="eligible"/>
+    <circle cx="1170" cy="205" r="8" class="eligible"/>
+    <circle cx="1110" cy="176" r="11" class="selected"/>
+
+    <!-- Cluster 5 -->
+    <circle cx="655" cy="494" r="8" class="eligible"/>
+    <circle cx="673" cy="549" r="8" class="eligible"/>
+    <circle cx="744" cy="565" r="8" class="eligible"/>
+    <circle cx="803" cy="524" r="8" class="eligible"/>
+    <circle cx="716" cy="503" r="11" class="selected"/>
+
+    <!-- Cluster 6 -->
+    <circle cx="1017" cy="441" r="8" class="eligible"/>
+    <circle cx="1038" cy="556" r="8" class="eligible"/>
+    <circle cx="1088" cy="574" r="8" class="eligible"/>
+    <circle cx="1148" cy="552" r="8" class="eligible"/>
+    <circle cx="1172" cy="459" r="8" class="eligible"/>
+    <circle cx="1119" cy="430" r="8" class="eligible"/>
+    <circle cx="1076" cy="500" r="11" class="selected"/>
+
+
+    <!-- Remaining eligible-genome cloud -->
+
+    <circle cx="807" cy="69"  r="8" class="eligible"/>
+    <circle cx="842" cy="88"  r="8" class="eligible"/>
+    <circle cx="879" cy="67"  r="8" class="eligible"/>
+    <circle cx="909" cy="88"  r="8" class="eligible"/>
+    <circle cx="968" cy="86"  r="8" class="eligible"/>
+    <circle cx="1021" cy="109" r="8" class="eligible"/>
+
+    <circle cx="824" cy="123" r="8" class="eligible"/>
+    <circle cx="846" cy="160" r="8" class="eligible"/>
+    <circle cx="894" cy="139" r="8" class="eligible"/>
+    <circle cx="946" cy="139" r="8" class="eligible"/>
+    <circle cx="998" cy="151" r="8" class="eligible"/>
+    <circle cx="1046" cy="157" r="8" class="eligible"/>
+
+    <circle cx="596" cy="183" r="8" class="eligible"/>
+    <circle cx="626" cy="207" r="8" class="eligible"/>
+    <circle cx="694" cy="205" r="8" class="eligible"/>
+    <circle cx="794" cy="208" r="8" class="eligible"/>
+    <circle cx="824" cy="237" r="8" class="eligible"/>
+    <circle cx="976" cy="241" r="8" class="eligible"/>
+    <circle cx="1027" cy="219" r="8" class="eligible"/>
+    <circle cx="1066" cy="252" r="8" class="eligible"/>
+    <circle cx="1148" cy="259" r="8" class="eligible"/>
+    <circle cx="1204" cy="251" r="8" class="eligible"/>
+
+    <circle cx="694" cy="282" r="8" class="eligible"/>
+    <circle cx="742" cy="276" r="8" class="eligible"/>
+    <circle cx="792" cy="300" r="8" class="eligible"/>
+    <circle cx="827" cy="328" r="8" class="eligible"/>
+    <circle cx="879" cy="338" r="8" class="eligible"/>
+    <circle cx="963" cy="319" r="8" class="eligible"/>
+    <circle cx="1006" cy="286" r="8" class="eligible"/>
+    <circle cx="1046" cy="326" r="8" class="eligible"/>
+    <circle cx="1098" cy="310" r="8" class="eligible"/>
+    <circle cx="1157" cy="329" r="8" class="eligible"/>
+
+    <circle cx="531" cy="410" r="8" class="eligible"/>
+    <circle cx="579" cy="427" r="8" class="eligible"/>
+    <circle cx="634" cy="408" r="8" class="eligible"/>
+    <circle cx="684" cy="425" r="8" class="eligible"/>
+    <circle cx="742" cy="399" r="8" class="eligible"/>
+    <circle cx="790" cy="422" r="8" class="eligible"/>
+    <circle cx="838" cy="389" r="8" class="eligible"/>
+    <circle cx="883" cy="414" r="8" class="eligible"/>
+    <circle cx="935" cy="385" r="8" class="eligible"/>
+    <circle cx="979" cy="404" r="8" class="eligible"/>
+    <circle cx="1053" cy="380" r="8" class="eligible"/>
+    <circle cx="1158" cy="390" r="8" class="eligible"/>
+    <circle cx="1211" cy="410" r="8" class="eligible"/>
+
+    <circle cx="560" cy="485" r="8" class="eligible"/>
+    <circle cx="608" cy="461" r="8" class="eligible"/>
+    <circle cx="768" cy="464" r="8" class="eligible"/>
+    <circle cx="835" cy="477" r="8" class="eligible"/>
+    <circle cx="884" cy="450" r="8" class="eligible"/>
+    <circle cx="931" cy="478" r="8" class="eligible"/>
+    <circle cx="985" cy="512" r="8" class="eligible"/>
+    <circle cx="1210" cy="506" r="8" class="eligible"/>
+
+    <circle cx="590" cy="543" r="8" class="eligible"/>
+    <circle cx="629" cy="577" r="8" class="eligible"/>
+    <circle cx="824" cy="569" r="8" class="eligible"/>
+    <circle cx="864" cy="533" r="8" class="eligible"/>
+    <circle cx="903" cy="568" r="8" class="eligible"/>
+    <circle cx="956" cy="548" r="8" class="eligible"/>
+    <circle cx="995" cy="590" r="8" class="eligible"/>
+    <circle cx="1195" cy="577" r="8" class="eligible"/>
+
+  </g>
+
 </svg>
