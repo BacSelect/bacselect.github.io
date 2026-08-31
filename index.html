@@ -15,6 +15,7 @@
   <link rel="canonical" href="https://bacselect.github.io/">
   <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/atlas.css">
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -46,47 +47,64 @@
         <span class="status-dot" aria-hidden="true"></span>
         <span id="statusLabel">Selector v1 reference panel</span>
       </div>
-      <p class="hero-question">We need a manageable set of bacterial genomes. Which ones?</p>
-      <h1>Bacterial genome diversity,<br><em>at the scale you need.</em></h1>
-      <p class="hero-copy">Choose how many genomes you can realistically analyse. BacSelect returns a deterministic selector-v1 reference panel that spans bacterial genome architecture within the frozen validation foundation, while controlling the influence of heavily represented species.</p>
-
-      <div id="explore" class="selector-card" aria-labelledby="selector-title">
-        <div class="selector-heading">
-          <div>
-            <span class="eyebrow" id="selector-title">How many genomes?</span>
-            <div class="n-display"><span id="nValue">100</span><span class="n-unit">genomes</span></div>
+      <div class="atlas-hero-grid">
+        <div class="atlas-hero-copy">
+          <p class="hero-question">We need a manageable set of bacterial genomes. Which ones?</p>
+          <h1>Bacterial genome diversity,<br><em>at the scale you need</em></h1>
+          <p class="hero-copy">Choose how many genomes you can realistically analyse. BacSelect returns a deterministic selector-v1 reference panel that spans bacterial genome architecture within the frozen validation foundation, while controlling the influence of heavily represented species.</p>
+          <div id="explore" class="selector-card" aria-labelledby="selector-title">
+            <div class="selector-heading">
+              <div>
+                <span class="eyebrow" id="selector-title">Choose the scale (N)</span>
+                <div class="n-display"><span id="nValue">100</span><span class="n-unit">genomes</span></div>
+              </div>
+              <div class="custom-control">
+                <label for="nInput">Custom</label>
+                <input id="nInput" type="number" min="10" max="500" step="1" value="100" inputmode="numeric" aria-label="Custom number of genomes">
+              </div>
+            </div>
+            <input id="nSlider" type="range" min="10" max="500" step="1" value="100" aria-label="Number of genomes">
+            <div class="presets" aria-label="Common panel sizes">
+              <button type="button" data-n="10">10</button>
+              <button type="button" data-n="20">20</button>
+              <button type="button" data-n="50">50</button>
+              <button type="button" data-n="100" class="active">100</button>
+              <button type="button" data-n="200">200</button>
+              <button type="button" data-n="500">500</button>
+            </div>
+            <div class="selector-tradeoff" aria-label="Panel-size trade-off">
+              <span><strong>Coarser map</strong> fewer representatives · lower compute</span>
+              <span aria-hidden="true">→</span>
+              <span><strong>Finer map</strong> denser representation · higher compute</span>
+            </div>
+            <button id="buildButton" class="build-button" type="button">
+              <span>Get reference panel</span>
+              <span aria-hidden="true">→</span>
+            </button>
+            <p id="buildNote" class="build-note" role="status">Selector v1.0.0 reference panels are validated. The first dated monthly release remains pending.</p>
+            <noscript>
+              <p class="noscript-note">JavaScript is required for custom-N reference panels. Preset accession lists are published directly: <a href="data/reference-v1/panel-n10.txt">N=10</a>, <a href="data/reference-v1/panel-n20.txt">N=20</a>, <a href="data/reference-v1/panel-n50.txt">N=50</a>, <a href="data/reference-v1/panel-n100.txt">N=100</a>, <a href="data/reference-v1/panel-n200.txt">N=200</a>, and <a href="data/reference-v1/panel-n500.txt">N=500</a>.</p>
+            </noscript>
           </div>
-          <div class="custom-control">
-            <label for="nInput">Custom</label>
-            <input id="nInput" type="number" min="10" max="500" step="1" value="100" inputmode="numeric" aria-label="Custom number of genomes">
+        </div>
+
+        <div class="atlas-stage" aria-label="Conceptual BacSelect diversity map. Grey points represent the genome universe and purple points represent selected genomes.">
+          <div class="atlas-stage-top" aria-hidden="true">
+            <span class="atlas-kicker">Genomic landscape</span>
+            <div class="atlas-readout"><strong id="atlasN">100</strong><span>selected</span><span id="atlasShare" class="atlas-share">0.18% of universe</span></div>
           </div>
+          <svg id="atlasMap" class="atlas-map" viewBox="0 0 820 650" role="img" aria-labelledby="atlasMapTitle atlasMapDesc">
+            <title id="atlasMapTitle">BacSelect conceptual genomic diversity map</title>
+            <desc id="atlasMapDesc">A dense grey genome universe with a nested set of purple selected representatives. Changing N changes the density of selected points.</desc>
+          </svg>
+          <div class="atlas-map-label universe" aria-hidden="true"><strong>55,306 genomes</strong><span>the frozen development universe</span></div>
+          <div class="atlas-map-label selection" aria-hidden="true"><strong>BacSelect panel</strong><span>representatives spread across the landscape</span></div>
+          <div class="atlas-scale-bar" aria-hidden="true">
+            <div class="scale-copy"><span>coarse</span><span id="atlasResolution">middle scale</span><span>fine</span></div>
+            <div class="scale-line"></div>
+          </div>
+          <p class="atlas-caption">Conceptual diversity map · positions are illustrative, not measured validation coordinates.</p>
         </div>
-
-        <input id="nSlider" type="range" min="10" max="500" step="1" value="100" aria-label="Number of genomes">
-
-        <div class="presets" aria-label="Common panel sizes">
-          <button type="button" data-n="10">10</button>
-          <button type="button" data-n="20">20</button>
-          <button type="button" data-n="50">50</button>
-          <button type="button" data-n="100" class="active">100</button>
-          <button type="button" data-n="200">200</button>
-          <button type="button" data-n="500">500</button>
-        </div>
-
-        <div class="selector-tradeoff" aria-label="Panel-size trade-off">
-          <span><strong>Smaller N</strong> lower compute, coarser structural coverage</span>
-          <span aria-hidden="true">→</span>
-          <span><strong>Larger N</strong> higher compute, denser structural coverage</span>
-        </div>
-
-        <button id="buildButton" class="build-button" type="button">
-          <span>Get reference panel</span>
-          <span aria-hidden="true">→</span>
-        </button>
-        <p id="buildNote" class="build-note" role="status">Selector v1.0.0 reference panels are validated. The first dated monthly release remains pending.</p>
-        <noscript>
-          <p class="noscript-note">JavaScript is required for custom-N reference panels. Preset accession lists are published directly: <a href="data/reference-v1/panel-n10.txt">N=10</a>, <a href="data/reference-v1/panel-n20.txt">N=20</a>, <a href="data/reference-v1/panel-n50.txt">N=50</a>, <a href="data/reference-v1/panel-n100.txt">N=100</a>, <a href="data/reference-v1/panel-n200.txt">N=200</a>, and <a href="data/reference-v1/panel-n500.txt">N=500</a>.</p>
-        </noscript>
       </div>
 
       <section
@@ -611,5 +629,6 @@
   </footer>
 
   <script src="assets/app.js"></script>
+  <script src="assets/atlas.js"></script>
 </body>
 </html>
