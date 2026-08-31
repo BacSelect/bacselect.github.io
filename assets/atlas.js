@@ -4,8 +4,6 @@
   const input = document.querySelector('#nInput');
   const value = document.querySelector('#nValue');
   const readout = document.querySelector('#atlasN');
-  const resolution = document.querySelector('#atlasResolution');
-  const share = document.querySelector('#atlasShare');
   const presets = document.querySelector('.presets');
   if (!svg || !slider || !value) return;
 
@@ -153,13 +151,6 @@
   const selectedLayer = el('g', {'aria-hidden':'true'});
   svg.append(selectedLayer);
 
-  function scaleLabel(n) {
-    if (n <= 20) return 'coarse';
-    if (n <= 100) return 'middle';
-    if (n <= 250) return 'fine';
-    return 'very fine';
-  }
-
   function selectedRadius(n) {
     if (n <= 20) return 3.8;
     if (n <= 70) return 3.0;
@@ -168,20 +159,10 @@
     return 1.35;
   }
 
-  function updateRangeFill(n) {
-    const min = Number(slider.min) || 10;
-    const max = Number(slider.max) || 500;
-    const pct = ((n - min) / (max - min)) * 100;
-    slider.style.setProperty('--value', `${pct}%`);
-  }
-
   function render(n) {
     n = Math.max(10, Math.min(MAX_SELECTED, Number.parseInt(n, 10) || 100));
     currentN = n;
     if (readout) readout.textContent = new Intl.NumberFormat('en').format(n);
-    if (resolution) resolution.textContent = `${scaleLabel(n)} scale`;
-    if (share) share.textContent = `${((n / 55306) * 100).toFixed(2)}% of universe`;
-    updateRangeFill(n);
 
     const frag = document.createDocumentFragment();
     const radius = selectedRadius(n);

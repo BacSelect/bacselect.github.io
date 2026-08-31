@@ -1,6 +1,15 @@
 const slider = document.querySelector('#nSlider');
 const input = document.querySelector('#nInput');
 const value = document.querySelector('#nValue');
+const genomeScale = document.querySelector('#genomeScale');
+const nShare = document.querySelector('#nShare');
+const atlasShare = document.querySelector('#atlasShare');
+const atlasUniverseCount = document.querySelector('#atlasUniverseCount');
+const scaleMaxN = document.querySelector('#scaleMaxN');
+const scaleMaxShare = document.querySelector('#scaleMaxShare');
+const scaleSectionMaxN = document.querySelector('#scaleSectionMaxN');
+const scaleSectionMaxShare = document.querySelector('#scaleSectionMaxShare');
+const scaleBoundaryUniverse = document.querySelector('#scaleBoundaryUniverse');
 const presetsContainer = document.querySelector('.presets');
 const buildButton = document.querySelector('#buildButton');
 const buildNote = document.querySelector('#buildNote');
@@ -60,6 +69,8 @@ const site = {
 
 let ladderPromise = null;
 let activeObjectUrl = null;
+let panelStateN = null;
+let panelRequestSerial = 0;
 
 function setN(n) {
   const parsed = Number.parseInt(n, 10);
@@ -69,12 +80,47 @@ function setN(n) {
 
   slider.value = next;
   input.value = next;
-  value.textContent = next;
+  value.textContent = numberFormat.format(next);
   if (methodsN) methodsN.textContent = numberFormat.format(next);
+
+  const range = Math.max(1, site.maxN - site.minN);
+  const rawPosition = ((next - site.minN) / range) * 100;
+  const position = 2.4 + rawPosition * 0.96;
+  if (genomeScale) genomeScale.style.setProperty('--scale-position', `${position}%`);
+
+  const universe = site.foundation.eligibleGenomes;
+  if (Number.isFinite(universe) && universe > 0) {
+    const share = `${((next / universe) * 100).toFixed(2)}%`;
+    if (nShare) nShare.textContent = share;
+    if (atlasShare) atlasShare.textContent = `${share} of frozen universe`;
+    if (atlasUniverseCount) atlasUniverseCount.textContent = numberFormat.format(universe);
+
+    const maxShare = `${((site.maxN / universe) * 100).toFixed(2)}%`;
+    if (scaleMaxN) scaleMaxN.textContent = numberFormat.format(site.maxN);
+    if (scaleMaxShare) scaleMaxShare.textContent = maxShare;
+    if (scaleSectionMaxN) scaleSectionMaxN.textContent = numberFormat.format(site.maxN);
+    if (scaleSectionMaxShare) scaleSectionMaxShare.textContent = maxShare;
+    if (scaleBoundaryUniverse) scaleBoundaryUniverse.textContent = numberFormat.format(universe);
+  }
 
   document.querySelectorAll('[data-n]').forEach((button) => {
     button.classList.toggle('active', Number(button.dataset.n) === next);
   });
+
+  const displayedResultN = Number.parseInt(resultN.textContent.replace(/,/g, ''), 10);
+  const preparedPanelChanged = panelStateN !== null && next !== panelStateN;
+  const stalePanelChanged = panelStateN === null
+    && !panelResult.hidden
+    && Number.isFinite(displayedResultN)
+    && next !== displayedResultN;
+
+  if (preparedPanelChanged || stalePanelChanged) {
+    panelRequestSerial += 1;
+    panelStateN = null;
+    disableReferenceActions(`Selection changed to N=${numberFormat.format(next)}. Select Get reference panel to prepare this panel.`);
+    buildNote.textContent = `Selection changed. Get the N=${numberFormat.format(next)} reference panel.`;
+    resultN.textContent = numberFormat.format(next);
+  }
 }
 
 function renderPresets() {
@@ -223,6 +269,8 @@ function enableDownload(n, accessions) {
 
 async function showPanelStatus() {
   const n = Number(slider.value);
+  const requestSerial = ++panelRequestSerial;
+  panelStateN = n;
 
   resultN.textContent = numberFormat.format(n);
   resultRelease.textContent = site.reference.displayLabel;
@@ -235,9 +283,14 @@ async function showPanelStatus() {
 
   try {
     const accessions = await loadReferenceLadder();
+
+    if (requestSerial !== panelRequestSerial || Number(slider.value) !== n) return;
+
     enableDownload(n, accessions);
     buildNote.textContent = `Reference panel ready: N=${numberFormat.format(n)}.`;
   } catch (error) {
+    if (requestSerial !== panelRequestSerial || Number(slider.value) !== n) return;
+
     console.error('Validated BacSelect reference artifacts are not available in this website checkout.', error);
     buildNote.textContent = 'Selector v1 is validated, but the published accession artifact could not be loaded.';
     disableReferenceActions('Downloads are disabled because the frozen selector-v1 ladder could not be loaded from data/reference-v1/.');

@@ -54,16 +54,61 @@
           <p class="hero-copy">Choose how many genomes you can realistically analyse. BacSelect returns a deterministic selector-v1 reference panel that spans bacterial genome architecture within the frozen validation foundation, while controlling the influence of heavily represented species.</p>
           <div id="explore" class="selector-card" aria-labelledby="selector-title">
             <div class="selector-heading">
-              <div>
-                <span class="eyebrow" id="selector-title">Choose the scale (N)</span>
-                <div class="n-display"><span id="nValue">100</span><span class="n-unit">genomes</span></div>
-              </div>
+              <span class="eyebrow" id="selector-title">Choose the scale (N)</span>
               <div class="custom-control">
                 <label for="nInput">Custom</label>
                 <input id="nInput" type="number" min="10" max="500" step="1" value="100" inputmode="numeric" aria-label="Custom number of genomes">
               </div>
             </div>
-            <input id="nSlider" type="range" min="10" max="500" step="1" value="100" aria-label="Number of genomes">
+
+            <div id="genomeScale" class="genome-scale" style="--scale-position: 20.04%;">
+              <div class="genome-scale-readout">
+                <strong><span id="nValue">100</span> <span class="n-unit">genomes</span></strong>
+                <span id="scaleShare" class="genome-scale-share"><span id="nShare">0.18%</span> of eligible universe</span>
+              </div>
+
+              <div class="genome-scale-labels" aria-hidden="true">
+                <span>Sparser</span>
+                <span>Denser</span>
+              </div>
+
+              <div class="genome-scale-visual">
+                <svg class="genome-scale-dots" viewBox="0 0 1000 110" aria-hidden="true">
+                  <line class="genome-scale-baseline" x1="18" y1="55" x2="986" y2="55"></line>
+                  <g class="scale-dots-neutral">
+                    <circle cx="28" cy="55" r="14"></circle><circle cx="145" cy="55" r="12"></circle><circle cx="248" cy="55" r="10.5"></circle>
+                    <circle cx="335" cy="55" r="9"></circle><circle cx="410" cy="55" r="8"></circle><circle cx="470" cy="55" r="7.2"></circle>
+                    <circle cx="520" cy="55" r="6.5"></circle><circle cx="562" cy="55" r="5.9"></circle><circle cx="599" cy="55" r="5.4"></circle>
+                    <circle cx="632" cy="55" r="5"></circle><circle cx="662" cy="55" r="4.7"></circle><circle cx="690" cy="55" r="4.4"></circle>
+                    <circle cx="548" cy="38" r="4.5"></circle><circle cx="604" cy="37" r="4.1"></circle><circle cx="650" cy="38" r="3.8"></circle>
+                    <circle cx="548" cy="72" r="4.5"></circle><circle cx="604" cy="73" r="4.1"></circle><circle cx="650" cy="72" r="3.8"></circle>
+                  </g>
+                  <g class="scale-dots-accent">
+                    <circle cx="716" cy="55" r="4.2"></circle><circle cx="740" cy="55" r="4"></circle><circle cx="763" cy="55" r="3.8"></circle>
+                    <circle cx="785" cy="55" r="3.6"></circle><circle cx="806" cy="55" r="3.4"></circle><circle cx="826" cy="55" r="3.2"></circle>
+                    <circle cx="845" cy="55" r="3.1"></circle><circle cx="863" cy="55" r="3"></circle><circle cx="880" cy="55" r="2.9"></circle>
+                    <circle cx="896" cy="55" r="2.8"></circle><circle cx="911" cy="55" r="2.7"></circle><circle cx="925" cy="55" r="2.6"></circle>
+                    <circle cx="939" cy="55" r="2.5"></circle><circle cx="952" cy="55" r="2.4"></circle><circle cx="964" cy="55" r="2.3"></circle>
+                    <circle cx="976" cy="55" r="2.2"></circle><circle cx="987" cy="55" r="2.1"></circle>
+                    <circle cx="724" cy="36" r="3.5"></circle><circle cx="760" cy="37" r="3.3"></circle><circle cx="791" cy="35" r="3.1"></circle>
+                    <circle cx="819" cy="37" r="3"></circle><circle cx="845" cy="35" r="2.9"></circle><circle cx="869" cy="37" r="2.8"></circle>
+                    <circle cx="892" cy="35" r="2.7"></circle><circle cx="913" cy="37" r="2.6"></circle><circle cx="933" cy="35" r="2.5"></circle>
+                    <circle cx="952" cy="37" r="2.4"></circle><circle cx="970" cy="35" r="2.3"></circle><circle cx="987" cy="37" r="2.2"></circle>
+                    <circle cx="724" cy="74" r="3.5"></circle><circle cx="760" cy="73" r="3.3"></circle><circle cx="791" cy="75" r="3.1"></circle>
+                    <circle cx="819" cy="73" r="3"></circle><circle cx="845" cy="75" r="2.9"></circle><circle cx="869" cy="73" r="2.8"></circle>
+                    <circle cx="892" cy="75" r="2.7"></circle><circle cx="913" cy="73" r="2.6"></circle><circle cx="933" cy="75" r="2.5"></circle>
+                    <circle cx="952" cy="73" r="2.4"></circle><circle cx="970" cy="75" r="2.3"></circle><circle cx="987" cy="73" r="2.2"></circle>
+                    <circle cx="806" cy="21" r="2.7"></circle><circle cx="850" cy="20" r="2.6"></circle><circle cx="886" cy="22" r="2.5"></circle>
+                    <circle cx="918" cy="20" r="2.4"></circle><circle cx="946" cy="22" r="2.3"></circle><circle cx="971" cy="20" r="2.2"></circle>
+                    <circle cx="806" cy="89" r="2.7"></circle><circle cx="850" cy="90" r="2.6"></circle><circle cx="886" cy="88" r="2.5"></circle>
+                    <circle cx="918" cy="90" r="2.4"></circle><circle cx="946" cy="88" r="2.3"></circle><circle cx="971" cy="90" r="2.2"></circle>
+                  </g>
+                </svg>
+                <div class="genome-scale-marker" aria-hidden="true"></div>
+                <input id="nSlider" class="genome-scale-input" type="range" min="10" max="500" step="1" value="100" aria-label="Panel size in genomes" aria-describedby="scaleShare scaleBoundaryCompact">
+              </div>
+            </div>
+
             <div class="presets" aria-label="Common panel sizes">
               <button type="button" data-n="10">10</button>
               <button type="button" data-n="20">20</button>
@@ -72,11 +117,7 @@
               <button type="button" data-n="200">200</button>
               <button type="button" data-n="500">500</button>
             </div>
-            <div class="selector-tradeoff" aria-label="Panel-size trade-off">
-              <span><strong>Coarser map</strong> fewer representatives · lower compute</span>
-              <span aria-hidden="true">→</span>
-              <span><strong>Finer map</strong> denser representation · higher compute</span>
-            </div>
+            <p id="scaleBoundaryCompact" class="genome-scale-boundary">Even N=<span id="scaleMaxN">500</span> represents only <strong id="scaleMaxShare">0.90%</strong> of the eligible universe.</p>
             <button id="buildButton" class="build-button" type="button">
               <span>Get reference panel</span>
               <span aria-hidden="true">→</span>
@@ -91,18 +132,14 @@
         <div class="atlas-stage" aria-label="Conceptual BacSelect diversity map. Grey points represent the genome universe and purple points represent selected genomes.">
           <div class="atlas-stage-top" aria-hidden="true">
             <span class="atlas-kicker">Genomic landscape</span>
-            <div class="atlas-readout"><strong id="atlasN">100</strong><span>selected</span><span id="atlasShare" class="atlas-share">0.18% of universe</span></div>
+            <div class="atlas-readout"><strong id="atlasN">100</strong><span>selected</span><span id="atlasShare" class="atlas-share">0.18% of frozen universe</span></div>
           </div>
           <svg id="atlasMap" class="atlas-map" viewBox="0 0 820 650" role="img" aria-labelledby="atlasMapTitle atlasMapDesc">
             <title id="atlasMapTitle">BacSelect conceptual genomic diversity map</title>
             <desc id="atlasMapDesc">A dense grey genome universe with a nested set of purple selected representatives. Changing N changes the density of selected points.</desc>
           </svg>
-          <div class="atlas-map-label universe" aria-hidden="true"><strong>55,306 genomes</strong><span>the frozen development universe</span></div>
+          <div class="atlas-map-label universe" aria-hidden="true"><strong><span id="atlasUniverseCount">55,306</span> genomes</strong><span>the frozen development universe</span></div>
           <div class="atlas-map-label selection" aria-hidden="true"><strong>BacSelect panel</strong><span>representatives spread across the landscape</span></div>
-          <div class="atlas-scale-bar" aria-hidden="true">
-            <div class="scale-copy"><span>coarse</span><span id="atlasResolution">middle scale</span><span>fine</span></div>
-            <div class="scale-line"></div>
-          </div>
           <p class="atlas-caption">Conceptual diversity map · positions are illustrative, not measured validation coordinates.</p>
         </div>
       </div>
@@ -235,22 +272,23 @@
         <div class="use-scale-grid">
           <article>
             <strong>10–20</strong>
-            <span>Very compact</span>
+            <span>Smallest supported panels</span>
             <p>For expensive workflows, rapid checks, or situations where downstream compute and manual review are strongly limiting.</p>
           </article>
 
           <article>
             <strong>50–100</strong>
-            <span>Middle scale</span>
-            <p>A practical balance between tractability and denser sampling of the release's genome-architecture space.</p>
+            <span>Intermediate panels</span>
+            <p>More representatives sample the same genome-architecture space more densely, with a corresponding increase in downstream compute.</p>
           </article>
 
           <article>
             <strong>200–500</strong>
-            <span>Broad</span>
-            <p>For analyses that can absorb more compute in exchange for denser structural representation across the defined release universe.</p>
+            <span>Largest supported panels</span>
+            <p>The densest supported sampling of the defined release universe, while still representing only a small fraction of eligible genomes.</p>
           </article>
         </div>
+        <p class="scale-boundary-note"><strong>Scale boundary:</strong> even the largest supported panel, N=<span id="scaleSectionMaxN">500</span>, selects only <span id="scaleSectionMaxShare">0.90%</span> of the <span id="scaleBoundaryUniverse">55,306</span> eligible genomes in the current frozen development universe.</p>
       </div>
     </section>
 
