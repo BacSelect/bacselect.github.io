@@ -450,3 +450,721 @@
   .atlas-caption { bottom: 6px; }
   .hero > .foundation { margin-top: 8px; }
 }
+
+
+/* ==========================================================
+   BacSelect mobile composition pass v1
+   Mobile-only. Desktop and laptop atlas composition unchanged.
+   ========================================================== */
+@media (max-width: 680px) {
+  html {
+    scroll-padding-top: 16px;
+  }
+
+  .shell {
+    width: min(calc(100% - 32px), var(--max));
+  }
+
+  /* On phones the header should introduce the page, not permanently occupy it. */
+  .site-header {
+    position: relative;
+    top: auto;
+    z-index: 10;
+    height: 66px;
+    min-height: 66px;
+    padding-inline: 16px;
+  }
+  .site-header .brand span {
+    font-size: 19px;
+  }
+  .site-header nav {
+    gap: 0;
+  }
+  .site-header nav a:not(.nav-cta) {
+    display: none;
+  }
+  .site-header .nav-cta {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  /* Hero reads as proposition -> control -> visual evidence on a phone. */
+  .hero {
+    padding-top: 22px;
+    padding-bottom: 24px;
+  }
+  .hero .status-pill {
+    padding: 7px 10px;
+    font-size: 10px;
+    letter-spacing: .055em;
+  }
+  .atlas-hero-grid {
+    gap: 20px;
+    margin-top: 20px;
+  }
+  .atlas-hero-copy {
+    order: -1;
+    padding-top: 0;
+  }
+  .atlas-stage {
+    order: 0;
+    min-height: 350px;
+  }
+  .atlas-hero-copy .hero-question {
+    margin-bottom: 11px;
+    font-size: 11px;
+    line-height: 1.35;
+  }
+  .atlas-hero-copy h1 {
+    max-width: none;
+    margin-bottom: 16px;
+    font-size: clamp(40px, 11.5vw, 47px);
+    line-height: .94;
+    letter-spacing: -.064em;
+  }
+  .atlas-hero-copy .hero-copy {
+    max-width: none;
+    margin-bottom: 16px;
+    font-size: 15px;
+    line-height: 1.5;
+    letter-spacing: -.012em;
+  }
+
+  /* Selector: retain all functionality while removing unnecessary height. */
+  .atlas-hero-copy .selector-card {
+    padding: 16px;
+    border-radius: 18px;
+  }
+  .atlas-hero-copy .selector-heading {
+    gap: 12px;
+  }
+  .atlas-hero-copy .selector-card .eyebrow,
+  .atlas-hero-copy .custom-control label {
+    font-size: 9px;
+  }
+  .atlas-hero-copy #nValue {
+    font-size: 42px;
+  }
+  .atlas-hero-copy .n-unit {
+    font-size: 14px;
+  }
+  .atlas-hero-copy .custom-control input {
+    width: 72px;
+    padding: 7px 8px;
+    border-radius: 9px;
+  }
+  .atlas-hero-copy input[type="range"] {
+    margin: 10px 0 10px;
+  }
+  .atlas-hero-copy .presets {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 5px;
+  }
+  .atlas-hero-copy .presets button {
+    min-width: 0;
+    padding: 9px 3px;
+    border-radius: 9px;
+    font-size: 12px;
+  }
+  .atlas-hero-copy .selector-tradeoff {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .atlas-hero-copy .selector-tradeoff span {
+    font-size: 10px;
+    line-height: 1.38;
+  }
+  .atlas-hero-copy .selector-tradeoff span[aria-hidden="true"] {
+    display: none;
+  }
+  .atlas-hero-copy .selector-tradeoff span:last-child {
+    text-align: right;
+  }
+  .atlas-hero-copy .build-button {
+    width: 100%;
+    margin-top: 12px;
+    padding: 12px 15px;
+    justify-content: space-between;
+    font-size: 15px;
+  }
+  .atlas-hero-copy .build-note {
+    margin-top: 7px;
+    font-size: 10.5px;
+    line-height: 1.42;
+  }
+
+  /* Atlas becomes a compact visual payoff after the selector. */
+  .atlas-stage-top {
+    top: 0;
+  }
+  .atlas-kicker {
+    font-size: 9px;
+  }
+  .atlas-readout strong {
+    font-size: 20px;
+  }
+  .atlas-readout span {
+    font-size: 8px;
+  }
+  .atlas-readout .atlas-share {
+    font-size: 8px;
+  }
+  .atlas-map {
+    width: 100%;
+    margin: 18px 0 0;
+  }
+  .atlas-map-label.universe {
+    left: 3%;
+    top: 17%;
+    padding: 7px 8px 7px 10px;
+  }
+  .atlas-map-label.universe strong {
+    font-size: 10px;
+  }
+  .atlas-map-label.universe span {
+    font-size: 8px;
+  }
+  .atlas-map-label.selection,
+  .atlas-caption {
+    display: none;
+  }
+  .atlas-scale-bar {
+    left: 4%;
+    bottom: 4px;
+    width: 116px;
+  }
+  .atlas-scale-bar .scale-copy {
+    font-size: 8px;
+  }
+
+  /* Foundation metadata should scan as one strip, not three screens. */
+  .hero > .foundation {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 18px;
+  }
+  .hero > .foundation div,
+  .hero > .foundation div:not(:first-child),
+  .hero > .foundation div:nth-child(3) {
+    min-width: 0;
+    padding: 13px 8px;
+    border-right: 0;
+    border-bottom: 0;
+  }
+  .hero > .foundation div + div {
+    border-left: 1px solid var(--line);
+  }
+  .hero > .foundation strong {
+    font-size: clamp(19px, 6.2vw, 25px);
+    line-height: 1;
+    letter-spacing: -.045em;
+  }
+  .hero > .foundation span {
+    margin-top: 5px;
+    font-size: 9px;
+    line-height: 1.25;
+  }
+  .hero .foundation-note {
+    margin-top: 11px;
+    font-size: 10.5px;
+    line-height: 1.48;
+  }
+
+  /* Generated panel status: compact dashboard, not a second landing page. */
+  .hero > .result-panel {
+    margin-top: 18px;
+    padding: 18px;
+    border-radius: 18px;
+  }
+  .hero > .result-panel .result-header {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 12px;
+    align-items: start;
+  }
+  .hero > .result-panel .result-header h2 {
+    margin: 7px 0 9px;
+    font-size: 27px;
+    line-height: 1;
+    letter-spacing: -.045em;
+  }
+  .hero > .result-panel .result-header p {
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+  .hero > .result-panel .result-n {
+    text-align: right;
+  }
+  .hero > .result-panel .result-n strong {
+    font-size: 42px;
+    line-height: .9;
+  }
+  .hero > .result-panel .result-n span {
+    display: block;
+    max-width: 78px;
+    margin-top: 5px;
+    font-size: 9px;
+    line-height: 1.25;
+  }
+  .hero > .result-panel .result-meta {
+    grid-template-columns: 1fr;
+    margin-top: 17px;
+  }
+  .hero > .result-panel .result-meta div,
+  .hero > .result-panel .result-meta div:not(:first-child) {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 9px 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero > .result-panel .result-meta div:last-child {
+    border-bottom: 0;
+  }
+  .hero > .result-panel .result-meta span {
+    font-size: 9px;
+  }
+  .hero > .result-panel .result-meta strong {
+    font-size: 12.5px;
+    text-align: right;
+  }
+  .hero > .result-panel .result-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .hero > .result-panel .result-actions a {
+    margin: 0;
+    min-width: 0;
+    padding: 10px 8px;
+    font-size: 11px;
+  }
+  .hero > .result-panel #resultRepoLink {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+    padding-inline: 0;
+    border: 0;
+    background: transparent;
+  }
+  .hero > .result-panel .result-note {
+    margin-top: 12px;
+    font-size: 10.5px;
+    line-height: 1.45;
+  }
+
+  /* Shared mobile rhythm. */
+  .section,
+  .why-section,
+  .scale-section,
+  .universe-section,
+  .validation-section {
+    padding-top: 62px;
+    padding-bottom: 62px;
+  }
+  .coverage-section,
+  .method-section {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+  .eyebrow {
+    font-size: 10px;
+    letter-spacing: .12em;
+  }
+  .section-intro h2,
+  .section-intro-copy h2,
+  .scale-heading h2,
+  .coverage-copy h2,
+  .universe-heading h2,
+  .method-grid h2,
+  .validation-heading h2,
+  .release-top h2 {
+    font-size: clamp(39px, 11.2vw, 46px);
+    line-height: .98;
+    letter-spacing: -.055em;
+  }
+  .section-intro p,
+  .section-intro-copy p,
+  .scale-heading-copy p,
+  .universe-heading-copy p,
+  .method-copy p,
+  .validation-heading-copy p,
+  .release-intro,
+  .release-history p {
+    font-size: 15px;
+    line-height: 1.56;
+  }
+
+  /* Why BacSelect? */
+  .why-layout {
+    gap: 28px;
+  }
+  .why-layout .section-intro-copy h2 {
+    margin-top: 11px;
+    margin-bottom: 21px;
+  }
+  .why-layout .section-intro-copy p + p {
+    margin-top: 17px;
+  }
+  .universe-panel-figure {
+    margin-top: 4px;
+    padding: 9px;
+    border-radius: 18px;
+  }
+  .problem-grid {
+    gap: 10px;
+    margin-top: 26px;
+  }
+  .problem-grid article {
+    min-height: 0;
+    padding: 20px;
+    border-radius: 18px;
+  }
+  .problem-grid h3 {
+    margin-top: 7px;
+    font-size: 23px;
+    line-height: 1.05;
+  }
+  .problem-grid p {
+    font-size: 14px;
+    line-height: 1.52;
+  }
+
+  /* Choose N. */
+  .scale-heading {
+    gap: 24px;
+  }
+  .scale-heading-copy p + p {
+    margin-top: 15px;
+  }
+  .nested-panel-figure {
+    margin-top: 30px;
+    padding: 9px;
+    border-radius: 18px;
+  }
+  .use-scale-heading {
+    margin-top: 44px;
+  }
+  .use-scale-heading p {
+    margin-top: 13px;
+    font-size: 14px;
+    line-height: 1.52;
+  }
+  .use-scale-grid {
+    gap: 10px;
+    margin-top: 24px;
+  }
+  .use-scale-grid article {
+    min-height: 0;
+    padding: 21px 20px 22px;
+    border-radius: 18px;
+  }
+  .use-scale-grid strong {
+    font-size: 46px;
+    line-height: .95;
+  }
+  .use-scale-grid span {
+    margin-top: 14px;
+    font-size: 16px;
+  }
+  .use-scale-grid p {
+    margin-top: 7px;
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+
+  /* Coverage: preserve the dark change of pace but make it one concise chapter. */
+  .coverage-layout {
+    gap: 30px;
+  }
+  .coverage-copy h2 {
+    margin: 10px 0 20px;
+  }
+  .coverage-copy > p {
+    margin-bottom: 12px;
+    font-size: 14.5px;
+    line-height: 1.58;
+  }
+  .coverage-metrics {
+    margin-top: 22px;
+  }
+  .coverage-metrics div {
+    grid-template-columns: 112px 1fr;
+    gap: 12px;
+    padding: 12px 0;
+  }
+  .nearest-distance-figure {
+    padding: 9px 10px 12px;
+    border-radius: 18px;
+  }
+  .coverage-release-preview {
+    margin-top: 34px;
+  }
+  .coverage-release-top {
+    gap: 14px;
+    padding-top: 22px;
+  }
+  .coverage-release-top strong {
+    font-size: 23px;
+    line-height: 1.12;
+  }
+  .coverage-n-preview {
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 20px;
+  }
+  .coverage-n-preview span {
+    padding: 11px 6px;
+    font-size: 13px;
+  }
+  .coverage-n-preview span:nth-child(3) {
+    border-right: 0;
+  }
+  .coverage-n-preview span:nth-child(-n+3) {
+    border-bottom: 1px solid rgba(255,255,255,.1);
+  }
+  .coverage-preview-note {
+    margin-top: 13px;
+    font-size: 10.5px;
+  }
+
+  /* Defined universe: a compact process timeline instead of five large cards. */
+  .universe-heading {
+    gap: 24px;
+  }
+  .universe-path {
+    gap: 7px;
+    margin-top: 30px;
+  }
+  .universe-path div {
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 38px minmax(0, 1fr);
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    border-radius: 16px;
+  }
+  .universe-path div span {
+    align-self: center;
+  }
+  .universe-path strong {
+    margin-top: 0;
+    font-size: 17px;
+  }
+  .universe-path i {
+    min-height: 16px;
+    line-height: 16px;
+  }
+  .universe-boundary {
+    margin-top: 30px;
+    padding-top: 28px;
+  }
+  .universe-boundary p {
+    margin-top: 14px;
+    font-size: 14.5px;
+    line-height: 1.58;
+  }
+
+  /* Method: keep the dark editorial block, tighten its reading rhythm. */
+  .method-grid {
+    gap: 28px;
+  }
+  .method-copy .lead {
+    font-size: 21px;
+    line-height: 1.5;
+  }
+  .method-copy p + p {
+    margin-top: 16px;
+  }
+  .method-facts {
+    margin-top: 36px;
+  }
+  .method-facts article,
+  .method-facts article:not(:first-child) {
+    min-height: 0;
+    padding: 22px 0;
+  }
+  .method-facts h3 {
+    margin-top: 24px;
+    font-size: 21px;
+  }
+  .method-facts p {
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+
+  /* Validation: retain the useful two-column progress map. */
+  .validation-heading {
+    gap: 24px;
+  }
+  .validation-state {
+    padding: 9px 11px;
+    font-size: 11px;
+  }
+  .validation-roadmap {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 34px;
+  }
+  .validation-node,
+  .validation-node:not(:first-child) {
+    min-height: 126px;
+    padding: 18px 12px 20px 0;
+  }
+  .validation-node:nth-child(even) {
+    padding-left: 12px;
+  }
+  .validation-node strong {
+    font-size: 15px;
+    line-height: 1.22;
+  }
+  .validation-summary {
+    margin-top: 28px;
+  }
+  .validation-summary > strong {
+    font-size: 19px;
+  }
+  .validation-summary p {
+    font-size: 13.5px;
+    line-height: 1.52;
+  }
+
+  /* Releases: 2x2 identity grid and shorter narrative blocks. */
+  #releases {
+    padding-top: 54px;
+    padding-bottom: 54px;
+  }
+  .release-card {
+    padding: 28px 20px;
+    border-radius: 24px;
+  }
+  .release-top {
+    gap: 22px;
+  }
+  .release-top h2 {
+    margin-top: 10px;
+  }
+  .release-badge {
+    min-width: 0;
+    width: 100%;
+    padding: 14px 15px;
+    border-radius: 15px;
+  }
+  .release-badge strong {
+    margin-top: 5px;
+    font-size: 22px;
+  }
+  .release-identity {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 28px;
+  }
+  .release-identity div,
+  .release-identity div:not(:first-child),
+  .release-identity div:nth-child(3) {
+    min-width: 0;
+    padding: 13px 10px 13px 0;
+    border: 0;
+    border-top: 1px solid rgba(20,23,23,.18);
+  }
+  .release-identity div:nth-child(even) {
+    padding-left: 12px;
+  }
+  .release-identity div:nth-child(odd) {
+    border-right: 1px solid rgba(20,23,23,.18);
+  }
+  .release-identity span {
+    font-size: 9px;
+  }
+  .release-identity strong {
+    margin-top: 5px;
+    font-size: 17px;
+  }
+  .release-grid {
+    gap: 0;
+    margin-top: 30px;
+  }
+  .release-grid div {
+    padding: 18px 0;
+  }
+  .release-grid h3 {
+    margin-bottom: 6px;
+    font-size: 18px;
+  }
+  .release-grid p {
+    font-size: 13.5px;
+    line-height: 1.52;
+  }
+  .release-change {
+    margin-top: 28px;
+    gap: 20px;
+  }
+  .release-change-copy h3 {
+    font-size: 25px;
+    line-height: 1.08;
+  }
+  .release-change-copy p {
+    font-size: 13.5px;
+    line-height: 1.52;
+  }
+  .release-change-figure {
+    padding: 9px;
+    border-radius: 18px;
+  }
+  .release-history {
+    gap: 17px;
+    margin-top: 28px;
+    padding-top: 23px;
+  }
+  .release-history strong {
+    font-size: 18px;
+    line-height: 1.2;
+  }
+
+  .methods-card {
+    padding: 20px;
+    border-radius: 18px;
+  }
+  .site-footer {
+    padding-top: 34px;
+    padding-bottom: 42px;
+  }
+}
+
+@media (max-width: 420px) {
+  .atlas-hero-copy h1,
+  .section-intro h2,
+  .section-intro-copy h2,
+  .scale-heading h2,
+  .coverage-copy h2,
+  .universe-heading h2,
+  .method-grid h2,
+  .validation-heading h2,
+  .release-top h2 {
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  .atlas-stage {
+    min-height: 338px;
+  }
+}
+
+/* ==========================================================
+   BacSelect stacked-hero ordering override v5
+   Whenever the hero collapses to one column, keep the
+   proposition + selector before the genomic landscape.
+   ========================================================== */
+@media (max-width: 1000px) {
+  .atlas-hero-grid {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .atlas-hero-copy {
+    order: 0 !important;
+  }
+
+  .atlas-stage {
+    order: 1 !important;
+  }
+}
