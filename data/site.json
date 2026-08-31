@@ -1,10 +1,37 @@
 {
   "resource": "BacSelect",
-  "status": "development-preview",
-  "status_label": "Development preview",
-  "production_ready": false,
-  "release": null,
-  "selector_version": null,
+  "status": "selector-v1-reference",
+  "status_label": "Selector v1 reference panel",
+  "monthly_release": {
+    "published": false,
+    "release": null,
+    "status_label": "First monthly release pending"
+  },
+  "reference_panel": {
+    "validated": true,
+    "identity": "selector-v1-reference",
+    "display_label": "Selector v1 reference",
+    "selector": "OPS",
+    "selector_version": "1.0.0",
+    "architecture_schema_version": 1,
+    "artifact_schema_version": "bacselect-selector-v1-official-panels-v1",
+    "completion_status": "OFFICIAL_SELECTOR_V1_REFERENCE_PANELS_COMPLETE",
+    "completion_evidence_sha256": "c767483ca238e76f5448decc5d7810608cbf3da7642c060e1566ec630141ff53",
+    "winning_ladder_sha256": "c81d9fd30cda2d49f0f6c81d4bf99dace9fff811c7612036d9265ef90707fa13",
+    "content_manifest_sha256": "f7e8f4c8888ff41d841c0bd373f6334689a00da3385283854c467fe040acb31f",
+    "artifact_base": "data/reference-v1",
+    "ladder_file": "selector-v1-winning-ladder-n500.tsv",
+    "provenance_file": "panel-generation-provenance.json",
+    "content_manifest_file": "panel-content-manifest.tsv",
+    "presets": [
+      10,
+      20,
+      50,
+      100,
+      200,
+      500
+    ]
+  },
   "panel": {
     "min_n": 10,
     "max_n": 500,

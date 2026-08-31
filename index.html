@@ -44,11 +44,11 @@
     <section class="hero shell">
       <div class="status-pill">
         <span class="status-dot" aria-hidden="true"></span>
-        <span id="statusLabel">Development preview</span>
+        <span id="statusLabel">Selector v1 reference panel</span>
       </div>
       <p class="hero-question">We need a manageable set of bacterial genomes. Which ones?</p>
       <h1>Bacterial genome diversity,<br><em>at the scale you need.</em></h1>
-      <p class="hero-copy">Choose how many genomes you can realistically analyse. BacSelect is being built to return a deterministic panel that spans bacterial genome architecture within a defined public complete-genome universe, while controlling the influence of heavily represented species.</p>
+      <p class="hero-copy">Choose how many genomes you can realistically analyse. BacSelect returns a deterministic selector-v1 reference panel that spans bacterial genome architecture within the frozen validation foundation, while controlling the influence of heavily represented species.</p>
 
       <div id="explore" class="selector-card" aria-labelledby="selector-title">
         <div class="selector-heading">
@@ -80,12 +80,12 @@
         </div>
 
         <button id="buildButton" class="build-button" type="button">
-          <span>Select genomes</span>
+          <span>Get reference panel</span>
           <span aria-hidden="true">→</span>
         </button>
-        <p id="buildNote" class="build-note" role="status">Panel generation will activate with the first validated BacSelect release.</p>
+        <p id="buildNote" class="build-note" role="status">Selector v1.0.0 reference panels are validated. The first dated monthly release remains pending.</p>
         <noscript>
-          <p class="noscript-note">JavaScript is required for the interactive panel-size control. No public BacSelect panel is currently released.</p>
+          <p class="noscript-note">JavaScript is required for custom-N reference panels. Preset accession lists are published directly: <a href="data/reference-v1/panel-n10.txt">N=10</a>, <a href="data/reference-v1/panel-n20.txt">N=20</a>, <a href="data/reference-v1/panel-n50.txt">N=50</a>, <a href="data/reference-v1/panel-n100.txt">N=100</a>, <a href="data/reference-v1/panel-n200.txt">N=200</a>, and <a href="data/reference-v1/panel-n500.txt">N=500</a>.</p>
         </noscript>
       </div>
 
@@ -98,12 +98,8 @@
         <div class="result-header">
           <div>
             <span class="eyebrow">Panel status</span>
-            <h2 id="resultTitle">No validated panel released yet</h2>
-            <p id="resultLead">
-              BacSelect validation is underway and no selector version has
-              been frozen. No genome identities are being served from the
-              development preview.
-            </p>
+            <h2 id="resultTitle">Selector v1 reference panel</h2>
+            <p id="resultLead">The selector-v1 reference panel is validated and frozen. It is a reference set derived from the validation foundation, not a dated monthly BacSelect release.</p>
           </div>
           <div class="result-n">
             <strong id="resultN">100</strong>
@@ -113,32 +109,26 @@
 
         <div class="result-meta">
           <div>
-            <span>Release</span>
-            <strong id="resultRelease">Pending</strong>
+            <span>Panel identity</span>
+            <strong id="resultRelease">Selector v1 reference</strong>
           </div>
           <div>
             <span>Selector version</span>
-            <strong id="resultSelector">Pending</strong>
+            <strong id="resultSelector">v1.0.0</strong>
           </div>
           <div>
-            <span>Panel</span>
-            <strong id="resultAvailability">Not released</strong>
+            <span>Monthly release</span>
+            <strong id="resultAvailability">Pending</strong>
           </div>
         </div>
 
         <div class="result-actions">
-          <button type="button" disabled>Panel TSV</button>
-          <button type="button" disabled>Provenance</button>
-          <a
-            id="resultRepoLink"
-            href="https://github.com/BacSelect/bacselect"
-          >View scientific repository <span aria-hidden="true">→</span></a>
+          <a id="referenceDownload" class="result-download disabled" aria-disabled="true">Download accessions</a>
+          <a id="referenceProvenance" class="result-download disabled" aria-disabled="true">Provenance</a>
+          <a id="resultRepoLink" href="https://github.com/BacSelect/bacselect">View scientific repository <span aria-hidden="true">→</span></a>
         </div>
 
-        <p class="result-note">
-          Downloads remain disabled until the first validated BacSelect
-          release.
-        </p>
+        <p id="resultNote" class="result-note">The frozen selector-v1 reference artifacts are published with this site. Choose N and select Get reference panel to download the exact prefix of the verified OPS ladder.</p>
       </section>
 
       <div class="foundation" aria-label="BacSelect development foundation universe">
@@ -253,7 +243,7 @@
           <div class="coverage-copy">
             <span class="eyebrow">How densely does N sample the universe?</span>
             <h2>Measure structural distance,<br>not an arbitrary percentage.</h2>
-            <p>BacSelect will quantify structural representation directly within each defined release universe.</p>
+            <p>BacSelect quantifies structural representation directly within each defined release universe. The selector-v1 reference set is already frozen; release-specific coverage summaries begin with the monthly production series.</p>
             <p>For every eligible genome, the distance to its nearest selected panel genome is measured in the validated architecture space. Release summaries use species-balanced weighting so heavily represented species do not dominate the reported distribution. Smaller distances mean denser structural representation.</p>
 
             <div class="coverage-metrics">
@@ -285,9 +275,9 @@
           <div class="coverage-release-top">
             <div>
               <span class="eyebrow">Release metrics</span>
-              <strong>Reported for every supported N after validation.</strong>
+              <strong>Reported for every supported N in dated monthly releases.</strong>
             </div>
-            <span class="pending-badge">Pending selector v1</span>
+            <span class="pending-badge">Monthly metrics pending</span>
           </div>
 
           <div class="coverage-n-preview" aria-label="Planned BacSelect panel sizes">
@@ -302,7 +292,7 @@
             <p class="coverage-preview-note">
               Species-balanced median and 95th-percentile nearest-panel distances,
               plus the maximum across eligible genomes, will be published with each
-              validated release.
+              dated monthly release.
             </p>
         </div>
       </div>
@@ -317,7 +307,7 @@
         </div>
 
         <div class="universe-heading-copy">
-          <p>BacSelect v1 is being designed around eligible complete bacterial genome assemblies in the <strong>INSDC / GenBank assembly archive</strong>, retrieved reproducibly through <strong>NCBI Datasets</strong>.</p>
+          <p>BacSelect v1 works from eligible complete bacterial genome assemblies in the <strong>INSDC / GenBank assembly archive</strong>, retrieved reproducibly through <strong>NCBI Datasets</strong>.</p>
           <p>NCBI Datasets is the retrieval interface. It is not a claim that NCBI is the only bacterial genome resource. Other genome collections exist and are not automatically incorporated into the BacSelect v1 universe.</p>
         </div>
       </div>
@@ -364,7 +354,7 @@
             <h2>Not random.<br>Not hand-picked.</h2>
           </div>
           <div class="method-copy">
-            <p class="lead">BacSelect is designed around <strong>identity-blind, deterministic, diversity-seeking selection</strong>.</p>
+            <p class="lead">BacSelect uses <strong>identity-blind, deterministic, diversity-seeking selection</strong>.</p>
             <p>The aim is specific: build compact panels that span observed bacterial <strong>genome architecture</strong>, while controlling the influence of species that are heavily represented in the public archive.</p>
             <p>Organism name, pathogen status, clinical relevance, publication history and expected software performance are not selection variables.</p>
           </div>
@@ -403,15 +393,15 @@
       <div class="validation-heading">
         <div>
           <span class="eyebrow">Validation status</span>
-          <h2>Validation<br>before release.</h2>
+          <h2>Selector v1<br>is frozen.</h2>
         </div>
 
         <div class="validation-heading-copy">
           <div class="validation-state">
             <span class="validation-state-dot" aria-hidden="true"></span>
-            <span>Feature sensitivity analysis complete</span>
+            <span>Selector v1.0.0 reference panels complete</span>
           </div>
-          <p>BacSelect follows a pre-specified, identity-blinded validation plan. Public panels remain unavailable until the selector and structural-feature schema are frozen.</p>
+          <p>The pre-specified selector validation is complete. OPS is the frozen selector for selector v1.0.0, and the official selector-v1 reference panels have been independently rebuilt byte-for-byte. Dated monthly production remains a separate release process.</p>
         </div>
       </div>
 
@@ -449,17 +439,17 @@
           <small>Complete</small>
         </article>
 
-        <article class="validation-node current">
+        <article class="validation-node complete">
           <span>06</span>
-          <strong>Remaining validation</strong>
-          <small>In progress</small>
+          <strong>External resolution + rebuild</strong>
+          <small>Complete</small>
         </article>
       </div>
 
       <div class="validation-summary">
-        <strong>Selector decision remains open.</strong>
-        <p>Repeat-scale testing, input-order invariance, deterministic rebuild and update-stability analyses remain before selector v1 is frozen.</p>
-        <a href="https://github.com/BacSelect/bacselect">Follow the validation <span aria-hidden="true">→</span></a>
+        <strong>Production selector: OPS.</strong>
+        <p>Selector v1.0.0 and its nested reference panels at N=10, 20, 50, 100, 200 and 500 are frozen. Custom N from 10–500 is the exact prefix of the same verified ladder. This reference set is not labelled with a monthly <code>YYYY.MM</code> release.</p>
+        <a href="https://github.com/BacSelect/bacselect">View the scientific repository <span aria-hidden="true">→</span></a>
       </div>
     </section>
 
@@ -469,10 +459,10 @@
           <div>
             <span class="eyebrow">Versioned by design</span>
             <h2>Fresh monthly.<br>Frozen forever.</h2>
-            <p class="release-intro">BacSelect releases are planned as immutable snapshots. A panel should remain reproducible long after the public genome archive has changed.</p>
+            <p class="release-intro">BacSelect monthly releases are immutable snapshots. The selector-v1 reference panel is available independently of the monthly series; the first <code>YYYY.MM</code> source snapshot is still pending.</p>
           </div>
           <div class="release-badge">
-            <span>First public release</span>
+            <span>First monthly release</span>
             <strong>Pending</strong>
           </div>
         </div>
@@ -523,16 +513,16 @@
               src="assets/release-change.svg"
               alt="A schematic comparison of previous and current BacSelect releases showing genome and panel changes."
             >
-            <figcaption>Release comparison graphic. No public BacSelect release exists yet.</figcaption>
+            <figcaption>Release comparison graphic. No dated monthly BacSelect release exists yet.</figcaption>
           </figure>
         </div>
 
         <div class="release-history">
           <div>
             <span class="eyebrow">Release history</span>
-            <strong>No BacSelect release has been published yet.</strong>
+            <strong>Selector v1 reference panel available; monthly series pending.</strong>
           </div>
-          <p>The current figures on this site describe the frozen development foundation used to design and validate BacSelect. They are not a BacSelect release.</p>
+          <p>The selector-v1 reference set is derived from the frozen 55,306-genome validation foundation and must not be cited as a <code>YYYY.MM</code> release. The first dated monthly release will use its own day-01 source snapshot.</p>
         </div>
       </div>
     </section>
@@ -547,16 +537,16 @@
 
         <div class="methods-card">
           <span class="eyebrow">Methods template</span>
-          <p>Complete bacterial genomes were selected using BacSelect release <strong>YYYY.MM</strong> (selector <strong>vX.Y.Z</strong>, architecture schema <strong>vX</strong>, N=<strong>N</strong>).</p>
+          <p id="methodsTemplate">Complete bacterial genomes were selected using the BacSelect selector v1 reference panel (selector <strong>v1.0.0</strong>, architecture schema <strong>v1</strong>, N=<strong id="methodsN">100</strong>).</p>
 
           <div class="citation-actions">
             <button type="button" disabled>BibTeX</button>
             <button type="button" disabled>RIS / EndNote</button>
             <button type="button" disabled>CSL-JSON</button>
-            <button type="button" disabled>Copy Methods</button>
+            <button id="copyMethodsButton" type="button">Copy Methods</button>
           </div>
 
-          <small>Citation downloads will activate with the first validated release.</small>
+          <small>Use the reference-panel wording above for the frozen selector-v1 reference set. Dated monthly releases will use the release-specific <code>YYYY.MM</code> citation wording.</small>
         </div>
       </div>
 
@@ -608,7 +598,7 @@
       <p>Bacterial genome diversity, at the scale you need.</p>
     </div>
     <div class="footer-meta">
-      <span>Development preview</span>
+      <span>Selector v1 reference</span>
       <a
         href="https://github.com/BacSelect/bacselect"
       >Scientific repository</a>
