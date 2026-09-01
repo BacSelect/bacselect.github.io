@@ -24,6 +24,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Validate search metadata
+        run: python3 tools/check-seo.py
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
@@ -35,3 +38,49 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Notify IndexNow
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          KEY="$(tr -d '\r\n' < indexnow-key.txt)"
+          python3 - "$KEY" <<'PYINDEX' > /tmp/indexnow.json
+          import json
+          import sys
+          from xml.etree import ElementTree as ET
+
+          key = sys.argv[1]
+          ns = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+          root = ET.parse("sitemap.xml").getroot()
+          urls = [
+              node.text.strip()
+              for node in root.findall("sm:url/sm:loc", ns)
+              if node.text and node.text.strip()
+          ]
+          payload = {
+              "host": "bacselect.github.io",
+              "key": key,
+              "keyLocation": "https://bacselect.github.io/indexnow-key.txt",
+              "urlList": urls,
+          }
+          print(json.dumps(payload, separators=(",", ":")))
+          PYINDEX
+
+          HTTP_CODE="$(curl -sS \
+            -o /tmp/indexnow-response.txt \
+            -w '%{http_code}' \
+            --retry 4 \
+            --retry-all-errors \
+            --retry-delay 3 \
+            --max-time 30 \
+            -H 'Content-Type: application/json; charset=utf-8' \
+            --data-binary @/tmp/indexnow.json \
+            https://api.indexnow.org/indexnow)"
+
+          cat /tmp/indexnow-response.txt || true
+          echo "IndexNow HTTP ${HTTP_CODE}"
+          case "$HTTP_CODE" in
+            200|202) ;;
+            *) exit 1 ;;
+          esac

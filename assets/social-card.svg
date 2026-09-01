@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#ffffff"/>
+  <rect x="42" y="42" width="1116" height="546" rx="34" fill="#f7f5ff"/>
+  <image href="mark.svg" x="82" y="112" width="390" height="390" preserveAspectRatio="xMidYMid meet"/>
+  <text x="530" y="240" fill="#191b21" font-family="Inter, Arial, sans-serif" font-size="88" font-weight="700">BacSelect</text>
+  <text x="534" y="302" fill="#6b4eff" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">Choose the scale. BacSelect does the selection.</text>
+  <line x1="534" y1="346" x2="614" y2="346" stroke="#6b4eff" stroke-width="8" stroke-linecap="round"/>
+  <text x="534" y="405" fill="#191b21" font-family="Inter, Arial, sans-serif" font-size="29">Reproducible bacterial genome panels</text>
+  <text x="534" y="447" fill="#8f949e" font-family="Inter, Arial, sans-serif" font-size="22">spanning genome architecture at the scale you need.</text>
+</svg>
