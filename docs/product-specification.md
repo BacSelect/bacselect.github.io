@@ -88,7 +88,6 @@ Primary actions should be immediately visible:
 - Download metadata (Excel)
 - Download metadata (TSV)
 - Download accessions
-- Retrieve genome FASTA sequences
 - Copy citation
 - Copy Methods text
 
@@ -242,9 +241,8 @@ Potential longitudinal metrics include:
 - website visits;
 - unique visitors where privacy-preserving measurement permits;
 - generated panel requests by N;
-- metadata downloads;
-- accession-list downloads;
-- FASTA retrievals;
+- metadata downloads by exact panel size and format;
+- accession-list downloads by exact panel size;
 - release-asset downloads;
 - citation-copy actions;
 - Methods-text copy actions;
@@ -413,12 +411,11 @@ Expected formats include:
 - `.json`
 - plain accession lists
 
-FASTA delivery requires a separate implementation decision because sequence
-archives may be large and the underlying sequence records are maintained by
-INSDC.
+BacSelect does not distribute or proxy genome FASTA files. The resource
+selects and describes canonical assembly records; users retrieve underlying
+sequence data from the relevant INSDC/NCBI source when required.
 
-The website repository should not become a permanent store of large duplicate
-genome sequence archives without a clear reason.
+The website therefore does not store duplicate genome sequence archives.
 
 ## Repository and website relationship
 

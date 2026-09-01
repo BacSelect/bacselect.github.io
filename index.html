@@ -177,10 +177,62 @@
           </div>
         </div>
 
+        <div class="result-usage" aria-live="polite">
+          <div>
+            <span>
+              Downloads for N=<strong id="resultDownloadN">100</strong>
+            </span>
+            <strong id="resultDownloadCount">—</strong>
+            <small id="resultDownloadBreakdown">
+              Download tracking is not yet connected.
+            </small>
+          </div>
+        </div>
+
         <div class="result-actions">
-          <a id="referenceDownload" class="result-download disabled" aria-disabled="true">Download accessions</a>
-          <a id="referenceProvenance" class="result-download disabled" aria-disabled="true">Provenance</a>
-          <a id="resultRepoLink" href="https://github.com/BacSelect/bacselect">View scientific repository <span aria-hidden="true">→</span></a>
+          <details class="download-menu">
+            <summary class="result-download">Download panel</summary>
+            <div class="download-menu-list">
+              <a
+                id="referenceMetadataXlsx"
+                class="download-option disabled"
+                aria-disabled="true"
+                data-download-format="xlsx"
+              >
+                <strong>Metadata</strong>
+                <span>Excel · .xlsx</span>
+              </a>
+              <a
+                id="referenceMetadataTsv"
+                class="download-option disabled"
+                aria-disabled="true"
+                data-download-format="tsv"
+              >
+                <strong>Metadata</strong>
+                <span>Tab-separated · .tsv</span>
+              </a>
+              <a
+                id="referenceDownload"
+                class="download-option disabled"
+                aria-disabled="true"
+                data-download-format="txt"
+              >
+                <strong>Accessions</strong>
+                <span>Plain text · .txt</span>
+              </a>
+            </div>
+          </details>
+
+          <a
+            id="referenceProvenance"
+            class="result-download disabled"
+            aria-disabled="true"
+          >Provenance</a>
+
+          <a
+            id="resultRepoLink"
+            href="https://github.com/BacSelect/bacselect"
+          >View scientific repository <span aria-hidden="true">→</span></a>
         </div>
 
         <p id="resultNote" class="result-note">The frozen selector-v1 reference artifacts are published with this site. Choose N and select Get reference panel to download the exact prefix of the verified OPS ladder.</p>
@@ -517,9 +569,12 @@
             <h2>Fresh monthly.<br>Frozen forever.</h2>
             <p class="release-intro">BacSelect monthly releases are immutable snapshots. The selector-v1 reference panel is available independently of the monthly series; the first <code>YYYY.MM</code> source snapshot is still pending.</p>
           </div>
-          <div class="release-badge">
-            <span>First monthly release</span>
-            <strong>Pending</strong>
+          <div class="release-badge release-countdown">
+            <span id="releaseCountdownLabel">First monthly snapshot</span>
+            <strong id="releaseCountdown">Calculating…</strong>
+            <small id="releaseCountdownDate">
+              Scheduled from release metadata
+            </small>
           </div>
         </div>
 
@@ -666,7 +721,9 @@
     </div>
   </footer>
 
-  <script src="assets/app.js"></script>
+  <script src="assets/panel-downloads.js?v=20260901-downloads2"></script>
+  <script src="assets/app.js?v=20260901-downloads2"></script>
   <script src="assets/atlas.js"></script>
+  <script src="assets/release-metrics.js?v=20260901-downloads2"></script>
 </body>
 </html>

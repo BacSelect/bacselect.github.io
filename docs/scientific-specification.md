@@ -493,8 +493,9 @@ Human-facing downloads will include at least:
 - TSV metadata;
 - accession list.
 
-FASTA delivery must not compromise release reproducibility or require large
-sequence archives to be stored directly in the website repository.
+BacSelect does not distribute or proxy FASTA sequence files. Canonical
+assembly accession.version identifiers remain the link to the underlying
+INSDC/NCBI sequence records.
 
 ## Version identity
 

@@ -1,0 +1,12 @@
+name = "bacselect-download-counter"
+main = "src/worker.js"
+compatibility_date = "2026-08-31"
+workers_dev = true
+
+[vars]
+ALLOWED_ORIGINS = "https://bacselect.github.io,http://127.0.0.1:8765,http://localhost:8765"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "bacselect-download-counter"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"

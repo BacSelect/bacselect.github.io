@@ -121,6 +121,17 @@ function setN(n) {
     buildNote.textContent = `Selection changed. Get the N=${numberFormat.format(next)} reference panel.`;
     resultN.textContent = numberFormat.format(next);
   }
+
+  window.dispatchEvent(
+    new CustomEvent(
+      'bacselect:selection-changed',
+      {
+        detail: {
+          n: next,
+        },
+      },
+    ),
+  );
 }
 
 function renderPresets() {
@@ -210,6 +221,10 @@ function disableReferenceActions(note) {
   referenceProvenance.setAttribute('aria-disabled', 'true');
 
   if (note) resultNote.textContent = note;
+
+  window.dispatchEvent(
+    new CustomEvent('bacselect:panel-invalidated'),
+  );
 }
 
 function parseWinningLadder(text) {
@@ -265,6 +280,17 @@ function enableDownload(n, accessions) {
   referenceProvenance.setAttribute('aria-disabled', 'false');
 
   resultNote.textContent = `This N=${numberFormat.format(n)} reference panel is the exact prefix of the frozen OPS selector-v1 ladder. It is not a dated monthly release.`;
+
+  window.dispatchEvent(
+    new CustomEvent(
+      'bacselect:panel-ready',
+      {
+        detail: {
+          n,
+        },
+      },
+    ),
+  );
 }
 
 async function showPanelStatus() {
