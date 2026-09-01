@@ -25,8 +25,8 @@ Create the D1 database in Oceania:
 
     npx wrangler@latest d1 create bacselect-download-counter --location oc
 
-Copy `wrangler.toml.example` to `wrangler.toml` and insert the returned
-database ID.
+`wrangler.toml` is the production deployment configuration. `wrangler.toml.example`
+is the template for a new deployment; insert the returned database ID.
 
 Apply the schema remotely:
 

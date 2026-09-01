@@ -9,4 +9,4 @@ ALLOWED_ORIGINS = "https://bacselect.github.io,http://127.0.0.1:8766,http://loca
 [[d1_databases]]
 binding = "DB"
 database_name = "bacselect-download-counter"
-database_id = "REPLACE_WITH_D1_DATABASE_ID"
+database_id = "fe2f1f03-0b97-4aed-bfac-64d4d4360195"

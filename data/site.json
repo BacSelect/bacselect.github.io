@@ -12,8 +12,8 @@
       "format"
     ],
     "display": true,
-    "enabled": false,
-    "endpoint": null,
+    "enabled": true,
+    "endpoint": "https://bacselect-download-counter.bacselect.workers.dev",
     "formats": [
       "xlsx",
       "tsv",
